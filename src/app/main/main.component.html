@@ -1,0 +1,26 @@
+<div class="main">
+   <p style="margin: 10px;padding: 0px;">Artists:</p>
+   <div class="rowElements">
+      <div *ngFor="let item of artists">
+         <app-artist [currentItem]="item">
+         </app-artist>
+      </div>
+   </div>
+   <p style="margin: 10px;padding: 0px;">Albums</p>
+   <div class="rowElements">
+      <div *ngFor="let item of albums">
+         <app-album [currentItem]="item">
+         </app-album>
+      </div>
+   </div>
+
+   <p style="margin: 10px;padding: 0px;">Songs</p>
+   <div class="rowElements">7
+      <div *ngFor="let item of songs">
+         <app-song [currentItem]="item">
+         </app-song>
+      </div>
+   </div>
+   <p>Login</p>
+   <app-login></app-login>
+</div>

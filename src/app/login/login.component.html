@@ -1,0 +1,24 @@
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <h2 >Login</h2>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="email" name="email">
+                    <label>Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" required [(ngModel)]="password" name="password">
+                    <label>Password</label>
+                </div>
+                <div class="remember">
+                    <label for=""><input type="checkbox">Remember me</label>
+                </div>
+                <button type="submit" (click)="LoginFromComponent()">Login</button>
+                <div class="singUp-link">
+                    <p>Don't have an account? <a href="#" class="signUpBtn-link">Sign up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
