@@ -1,11 +1,12 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements AfterViewInit {
+export class SidebarComponent implements OnInit {
   @ViewChild("body") body: ElementRef<HTMLElement> | undefined;
   @ViewChild('nav') sidebar: ElementRef<HTMLElement> | undefined;
   @ViewChild('toggle') toggle: ElementRef<HTMLElement> | undefined;
@@ -13,12 +14,17 @@ export class SidebarComponent implements AfterViewInit {
   @ViewChild('toggleSwitch') toggleSwitch: ElementRef<HTMLElement> | undefined;
   @ViewChild('modeText') modeText: ElementRef<HTMLElement> | undefined;
   modeSwitch:boolean = false;
+  isLogged:boolean = false;
+  id:string = "";
+  
 
-  constructor() {
+  constructor(private authService:AuthService) {
 
   }
-  ngAfterViewInit(): void {
-
+  ngOnInit(): void {
+    this.authService.isLoggedIn$.subscribe(Response =>{
+      this.isLogged = Response; 
+  })
   }
 
   toggleClickEvent() {
@@ -29,7 +35,6 @@ export class SidebarComponent implements AfterViewInit {
   }
   modeSwitchClickEvent() {
     this.modeSwitch = !this.modeSwitch;
-    console.log(this.modeSwitch);
     this.body?.nativeElement.classList.toggle("dark");
     if (this.body?.nativeElement.classList.contains("dark")) {
       if (this.modeText != null) {

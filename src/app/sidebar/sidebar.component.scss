@@ -29,6 +29,7 @@ $body-color: #18191a;
     min-height: 100%;
     background-color: $sidebar-color;
     max-width: 250px;
+    padding-top: 50px;
     transition: $tran-05;
 }
 ::selection{
@@ -50,7 +51,7 @@ $body-color: #18191a;
     left: 0;
     height: 100%;
     width: 250px;
-    padding: 10px 14px;
+    padding: 60px 14px;
     background: $sidebar-color;
     transition: $tran-05;
     z-index: 100;  

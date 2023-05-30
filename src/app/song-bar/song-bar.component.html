@@ -1,1 +1,30 @@
-<p>song-bar works!</p>
+<div  class="master_play">
+    <div class="wave">
+        <div class="wave1"></div>
+        <div class="wave1"></div>
+        <div class="wave1"></div>
+    </div>
+    <img src="../../assets/song.png" alt="no img">
+    <h5>{{song?.name}} <br>
+        <div class="subtitle">{{artist?.name}}</div>
+    </h5>
+    <div class="icon">
+        <i class="bi bi-skip-start-fill"></i>
+        <i #playButton class="bi bi-play-fill"></i>
+        <i class="bi bi-skip-end-fill"></i>
+    </div>
+    <span id="currentStart">0:00</span>
+    <div class="bar">
+        <input type="range" id="seek" min="0" value="0" max="100">
+        <div class="bar2" id="bar2"></div>
+        <div class="dot"></div>
+    </div>
+    <span id="currentEnd">{{minutes}}:{{seconds}}</span>
+    <div class="vol">
+        <i class="bi bi-volume-down-fill"></i>
+        <input type="range" id="vol" min="0" value="30" max="100">
+        <div class="vol_bar"></div>
+        <div class="dot" id="vol_dot"></div>
+    </div>
+</div>
+<!--*ngIf="song!=undefined && song.name"-->

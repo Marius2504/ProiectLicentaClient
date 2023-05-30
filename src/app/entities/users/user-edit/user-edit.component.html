@@ -1,1 +1,27 @@
-<p>user-edit works!</p>
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper">
+            <form action="">
+                <h2>Edit</h2>
+                <input type="text" [(ngModel)]="user.name" name="ala">
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="user.name" name="nameUser">
+                    <label>Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="user.email" name="email">
+                    <label>Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="user.phoneNumber" name="phoneNumber">
+                    <label>Phone number</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="user.imagePath" name="imagePath">
+                    <label>Image Path</label>
+                </div>
+                <button type="submit" (click)="Update()">Update</button>
+            </form>
+        </div>
+    </div>
+</body>

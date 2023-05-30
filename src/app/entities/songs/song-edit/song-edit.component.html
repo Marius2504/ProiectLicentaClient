@@ -1,1 +1,31 @@
-<p>song-edit works!</p>
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper">
+            <form action="">
+                <h2>Edit</h2>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="song.name" name="name">
+                    <label>Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="song.serverLink" name="serverLink">
+                    <label>Location on disk</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="song.genreId" name="genreId">
+                    <label>Genre id</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="song.albumId" name="albumId">
+                    <label>Album id</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="song.imagePath" name="imagePath">
+                    <label>Image Path</label>
+                </div>
+                <button type="submit" (click)="Update()">Update</button>
+            </form>
+        </div>
+    </div>
+</body>
+

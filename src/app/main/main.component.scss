@@ -1,9 +1,21 @@
+$headerheight : 130px;
+$songHeight: 90px;
 .main{
+    flex: 1;
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
+    height: calc(100vh - $headerheight);
+    min-height: 700px;
+    background-color: black;
 }
 .rowElements{
     display: flex;
     flex-direction: row;
+}
+.title{
+    font-size: larger;
+    color: beige;
+    font-weight: 600;
+    padding-left: 30px;
 }

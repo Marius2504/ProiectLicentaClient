@@ -1,5 +1,25 @@
+$tran-05: all 0.3s ease;
+$primary-color-light: #F6F5FF;
+$text-color: #707070;
 .navb{
     width: 100%;
-    background-color: hotpink;
-    
+    background-color: hotpink; 
+}
+.search-box{
+    border-radius: 6px;
+    background-color: $primary-color-light;
+    cursor: pointer;
+    transition: $tran-05;
+}
+.search-box input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: $primary-color-light;
+    color: $text-color;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 500;
+    transition: $tran-05;
 }

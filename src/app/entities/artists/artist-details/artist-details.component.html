@@ -1,1 +1,52 @@
-<p>artist-details works!</p>
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <h1>{{artist.name}}</h1>
+
+                <img *ngIf="artist.imageSrc;else other_content" src="{{artist.imageSrc}}" alt="" width="50px"
+                    height="50px">
+                <ng-template #other_content>
+                    <img src="../../../../assets/user.png" alt="aa" width="50px" height="50px">
+                </ng-template>
+
+                <button class="btn btn-primary" routerLink="edit">Edit</button>
+            </form>
+        </div>
+
+        <p class="title">Albums</p>
+        <div class="rowElements">
+            <div *ngFor="let item of albums">
+                <app-album [currentItem]="item">
+                </app-album>
+            </div>
+        </div>
+
+        <p class="title">Songs</p>
+        <div class="rowElements">
+            <div *ngFor="let item of songs">
+                <app-song [currentItem]="item">
+                </app-song>
+            </div>
+        </div>
+
+        <p>Events</p>
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <div class="input-group">
+                    <ol class="eventList">
+                        <li *ngFor="let event of events; let i = index" [attr.data-index]="i" class="eventItem">
+                            <div class="title">
+                                {{event.name}}
+                            </div>
+                            <div>{{event.date}}</div>
+                            
+                            <div>{{locations[i].city}}</div>
+                        </li>
+                    </ol>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+</body>

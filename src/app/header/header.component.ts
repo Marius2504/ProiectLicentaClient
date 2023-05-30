@@ -7,4 +7,8 @@ import { Component } from "@angular/core";
 })
 export class headerComponent{
 
+    searchBtnClickEvent()
+    {
+        console.log("da")
+    }
 }

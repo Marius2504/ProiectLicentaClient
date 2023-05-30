@@ -16,6 +16,9 @@ export abstract class GenericService<T> {
   Get(id: number) {
     return this.http.get<T>(this.url + '/' + id)
   }
+  GetByName(name:string){
+    return this.http.get<T>(this.url + '/' + name)
+  }
   GetAll(): Observable<T[]> {
     return this.http.get<T[]>(this.url)
   }

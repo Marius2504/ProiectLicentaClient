@@ -1,1 +1,20 @@
-<p>user-details works!</p>
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <h1>{{currentUser?.name}}</h1>
+                
+                <div class="input-group">
+                    <label>Email: {{currentUser?.email}}</label>
+                </div>
+                <div class="input-group">
+                    <label>Confirmed email: Yes</label>
+                </div>
+                <div class="input-group">
+                    <label>phoneNumber: {{currentUser?.phoneNumber}}</label>
+                </div>
+                <button class="btn btn-primary" routerLink="edit">Edit</button>
+            </form>
+        </div>
+    </div>
+</body>

@@ -1,1 +1,59 @@
-<p>album-details works!</p>
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+            <form action="">
+
+                <img *ngIf="album.imagePath;else other_content" src="{{album.imagePath}}" alt="" width="50px" height="50px">
+                <ng-template #other_content>
+                    <img src="../../../../assets/user.png" alt="aa" width="50px" height="50px">
+                </ng-template>
+
+                <div class="input-group">
+                    <h1>{{album.name}}</h1>
+                    <h4>{{album.description}}</h4>
+                </div>
+                <button class="btn btn-primary" routerLink="edit">Edit</button>
+            </form>
+        </div>
+
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <div class="input-group">
+                    <label>
+                        <img class="profile" *ngIf="artist.imageSrc;else other" src="{{artist.imageSrc}}" alt="" width="30px" height="30px">
+                        <ng-template #other>
+                            <img class="profile" src="../../../../assets/user.png" alt="aa" width="30px" height="30px">
+                        </ng-template>
+                        <a routerLink="../../artist/{{artist.id}}" > {{artist.name}} </a>{{album.year}} {{songs.length}} songs
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <div class="input-group">
+                    <ol class="songList">
+                        <li *ngFor="let song of songs" class="songItem">
+                            <div class="title">
+                                <button class="likeButton"><i class="bi bi-play"></i></button>
+                                {{song.name}}
+                            </div>
+                            <div class="plays">12,000</div>
+                            
+                            <div class="duration">
+                                <button class="likeButton"><i class="bi bi-heart"></i></button>
+                                0:34
+                                <button class="threeDotsButton"><i class="bi bi-three-dots"></i></button>
+                            </div>
+                            
+                            
+                        </li>
+                    </ol>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+

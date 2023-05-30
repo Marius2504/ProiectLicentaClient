@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Login } from '../models/Login.model';
 import { AuthService } from '../services/auth.service';
 
@@ -9,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent{
  
-  constructor(private authService:AuthService) {
+  constructor(private authService:AuthService, private router:Router) {
   }
   username: string="";
   isAdmin: boolean=false;
@@ -18,6 +19,7 @@ export class LoginComponent{
   LoginFromComponent()
   {
     this.authService.login(new Login(this.email,this.password))
+    this.router.navigate(['../']);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Register } from '../models/Register.model';
 import { AuthService } from '../services/auth.service';
 
@@ -9,7 +10,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegisterComponent {
 
-  constructor(private authService:AuthService) {
+  constructor(private authService:AuthService,private router:Router) {
+    authService.isAdmin()
   }
   username: string="";
   isAdmin: boolean=false;
@@ -26,6 +28,7 @@ export class RegisterComponent {
     if(this.VerifyPassword() && this.password.length>5 && this.terms == true)
     {
       this.authService.register(new Register(this.username,this.email,this.password,this.isAdmin))
+      this.router.navigate(['../']);
     }
     this.displayErrorMatch =!this.VerifyPassword();
     this.emailError =!this.validateEmail(this.email);

@@ -1,10 +1,53 @@
 .mainDiv{
-    background-color: aqua;
+    background-color: rgb(89, 90, 90);
     width: 150px;
-    height: 150px;
+    height: 230px;
     position: relative;
     margin: 0px 0px 0px 40px;
     padding-top: 0px;
     border: 0px;
     text-align: center;
+    cursor: pointer;
+    transition: 3s;
+}
+.img{
+    height: 70%;
+    width: 100%;
+    padding: 15px;
+}
+.info{
+    padding-left: 5px;
+    text-align: left;
+    color: aliceblue;
+    font-size: large;
+    font-weight: 500;
+}
+.info .subinfo{
+    font-size: medium;
+    font-weight: 200;
+}
+.button{
+    position: absolute;
+    top:50%;
+    right: 15%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-size: 40px;
+    background-color: rgb(41, 223, 80);
+    border-radius: 50%;
+    padding: 0px;
+    margin: 0px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.button .bx{
+    margin-left: -3px;
+}
+.mainDiv:hover .button {
+    opacity: 1;
+  }
+.button:hover{
+    background-color: lighten(rgb(41, 223, 80), 10%);
 }

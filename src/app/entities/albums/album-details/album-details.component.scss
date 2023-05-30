@@ -1,0 +1,16 @@
+.songList{
+    width: 100%;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+.songItem{
+    padding: 10px;
+    width: 100%;
+    background-color: aqua;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.profile{
+    border-radius: 50%;
+}
