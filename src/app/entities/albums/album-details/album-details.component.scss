@@ -1,3 +1,8 @@
+$headerheight : 60px;
+$songHeight: 90px;
+body{
+  min-height: calc(100vh - $headerheight - $songHeight);
+}
 .songList{
     width: 100%;
     padding-left: 0px;

@@ -6,7 +6,7 @@ export class Event{
     public tickedIds:number[] = []
     public artistIds:number[] = []
 
-    constructor(id:number,name:string,date:Date,locationId:number,tickedIds:number[],artistIds:number[])
+    constructor(id:number=0,name:string="",date:Date= new Date(Date.now()),locationId:number=0,tickedIds:number[]=[],artistIds:number[]=[])
     {
         this.id=id;
         this.name=name;

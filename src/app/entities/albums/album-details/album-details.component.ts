@@ -15,8 +15,8 @@ import { SongService } from 'src/app/services/song.service';
 export class AlbumDetailsComponent implements OnInit {
 
   songs:Song[] = []
-  artist:Artist= new Artist(0,"","","",[],[],[])
-  album:Album = new Album(0,"","","",0,0)
+  artist:Artist= new Artist()
+  album:Album = new Album()
   albumLikes:number = 0;
   id:number = 0
 
@@ -43,6 +43,7 @@ export class AlbumDetailsComponent implements OnInit {
   {
     this.albumService.Get(this.id).subscribe(Response =>
       {
+        console.log(Response)
         this.album=Response;
         this.getSongs();
         this.getArtist()
@@ -52,7 +53,6 @@ export class AlbumDetailsComponent implements OnInit {
   {
     this.songService.getAllSongsOfAlbum(this.id).subscribe(response =>{
       this.songs = response;
-      console.log(this.songs)
     })
   }
   getArtist()

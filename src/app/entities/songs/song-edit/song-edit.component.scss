@@ -1,0 +1,6 @@
+$headerheight : 60px;
+$songHeight: 90px;
+body{
+  min-height: calc(100vh - $headerheight - $songHeight);
+  padding: 20px;
+}

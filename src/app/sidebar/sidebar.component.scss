@@ -276,6 +276,12 @@ header .image-text .profession{
     color: $text-color;
     padding: 12px 60px;
 }
+.title{
+    font-size: 50px;
+    font-weight: 700;
+    padding-left: 30px;
+    text-decoration: none;
+}
 .sidebar.close ~ .home{
     left: 78px;
     height: 100vh;

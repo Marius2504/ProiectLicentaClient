@@ -6,22 +6,33 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'client';
-  serverName ='';
-  isButtonShown:boolean = false;
+  response: {dbPath: ''} = {dbPath: ''};
+  name: string ="";
+  address: string="";
+  user: UserToCreate=new UserToCreate();
+  users: User[] = [];
+  
+  uploadFinished = (event:any) => { 
+    this.response = event; 
+    console.log(this.response);
+  }
+  onCreate = () => {
+    this.user = {
+      name: this.name,
+      address: this.address,
+      imgPath: this.response.dbPath
+    }
+  }
 
-
-  constructor() {
-    setTimeout(()=>{
-      this.isButtonShown = true
-    },2000)
-  }
-  changeTitle()
-  {
-    this.title = this.serverName
-  }
-  changeServer(event:Event)
-  {
-    this.serverName = (<HTMLInputElement>event.target).value;
-  }
+}
+class UserToCreate {
+  name: string="";
+  address: string="";
+  imgPath: string="";
+}
+class User {
+  id: string=""
+  name: string=""
+  address: string=""
+  imgPath: string=""
 }

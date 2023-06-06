@@ -3,7 +3,14 @@
         <div class="form-wrapper">
             <form action="">
                 <h2>Edit</h2>
-                <input type="text" [(ngModel)]="user.name" name="ala">
+                <div *ngIf="user.imagePath" >
+                    
+                    <img src="{{user.imagePath}}" alt="no image">
+                </div>
+                <div >
+                    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+                    <button type="button" class="btn btn-success" (click)="file.click()">Upload</button>
+                </div>
                 <div class="input-group">
                     <input type="text" required [(ngModel)]="user.name" name="nameUser">
                     <label>Name</label>
@@ -18,8 +25,11 @@
                 </div>
                 <div class="input-group">
                     <input type="text" required [(ngModel)]="user.imagePath" name="imagePath">
-                    <label>Image Path</label>
+                    <label>For testing </label>
                 </div>
+
+                
+
                 <button type="submit" (click)="Update()">Update</button>
             </form>
         </div>

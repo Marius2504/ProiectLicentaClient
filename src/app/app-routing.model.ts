@@ -29,11 +29,16 @@ import { AllusersComponent } from './entities/users/allusers/allusers.component'
 import { AuthGuard } from './services/auth-guard.service';
 import { AdminGuard } from './services/admin-guard.service';
 import { ArtistGuard } from './services/artist-guard.service';
+import { MySongsComponent } from './entities/songs/my-songs/my-songs.component';
+import { AllgenreComponent } from './entities/genres/allgenre/allgenre.component';
+import { GenreCreateComponent } from './entities/genres/genre-create/genre-create.component';
+import { MyAlbumsComponent } from './entities/albums/my-albums/my-albums.component';
 
 
 
 const appRoutes:Routes = [
     {path:'',component:MainComponent},
+    {path:'myAlbums',canActivate:[ArtistGuard],component:MyAlbumsComponent},
     {path:'album/create',canActivate:[ArtistGuard],component:AlbumCreateComponent},
     {path:'album/:id',component:AlbumDetailsComponent},
     {path:'album/:id/edit',canActivate:[ArtistGuard] ,component:AlbumEditComponent},
@@ -56,10 +61,13 @@ const appRoutes:Routes = [
     {path:'artist/:id',component:ArtistDetailsComponent},
     {path:'artist/:id/edit', canActivate:[AdminGuard],component:ArtistEditComponent},
     
-  
+    {path:'mySongs',canActivate:[ArtistGuard],component:MySongsComponent},
     {path:'song/create',canActivate:[ArtistGuard],component:SongCreateComponent},
     {path:'song/:id',component:SongDetailsComponent},
     {path:'song/:id/edit',canActivate:[ArtistGuard],component:SongEditComponent},
+
+    {path:'allgenres', canActivate:[AuthGuard],component:AllgenreComponent},
+    {path:'genre/create',component:GenreCreateComponent},
     
   
     {path:'login',component:LoginComponent},

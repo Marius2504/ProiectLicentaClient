@@ -11,5 +11,9 @@ export class AlbumService extends GenericService<Album>   {
     getAllAlbumsOfArtist(id:number): Observable<Album[]> {
         return this.http.get<Album[]>(this.url+ '/artist/' + id)
     }
+    UploadImage(formData:FormData)
+  {
+    return this.http.post("https://localhost:7255/api" +'/Upload/Album', formData, {reportProgress: true, observe: 'events'})
+  }
     
 }

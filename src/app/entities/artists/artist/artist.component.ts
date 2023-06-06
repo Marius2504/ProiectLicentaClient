@@ -8,7 +8,7 @@ import { Artist } from 'src/app/models/Artist.model';
   styleUrls: ['./artist.component.scss']
 })
 export class ArtistComponent {
-@Input() currentItem:Artist =  new Artist(0,"","","",[],[],[])
+@Input() currentItem:Artist =  new Artist()
 
 constructor(private router:Router){ }
   ngOnInit(): void {

@@ -51,3 +51,8 @@
 .button:hover{
     background-color: lighten(rgb(41, 223, 80), 10%);
 }
+.info p{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

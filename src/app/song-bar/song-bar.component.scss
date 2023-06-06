@@ -1,6 +1,6 @@
 .master_play  {
-  position: fixed;
-  bottom: 0;
+  position: sticky;
+  bottom: 0px;
   width: 100%;
   z-index: 10;
   height: 90px;
@@ -110,7 +110,7 @@
   background: #36e2ec;
   border-radius: 50%;
   left: 0%;
-  transition: 1s linear;
+  
 }
 .master_play .bar .dot::before{
   content: '';
@@ -126,7 +126,8 @@
 .master_play .bar input{
   position: absolute;
   width: 100%;
-  top: -5px;
+  
+  top: -4px;
   left: 0;
   cursor: pointer;
   z-index: 999;
@@ -175,7 +176,6 @@
   border-radius: 50%;
   left: 0%;
   top: -1px;
-  transition: 1s linear;
 }
 .master_play .vol .dot::before{
   content: '';

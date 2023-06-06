@@ -10,7 +10,7 @@ import jwt_decode from 'jwt-decode';
 @Injectable()
 export class AuthService implements OnInit {
   url:string = "https://localhost:7255/api/User"
-  defaultUser:User = new User("","","",false,"","",false)
+  defaultUser:User = new User("","","",false,"","")
   loggedInUser :User | undefined
   
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
@@ -28,6 +28,7 @@ export class AuthService implements OnInit {
     
    }
    getUser(): Promise<any> {
+    
     return new Promise((resolve, reject) => {
       if (this.loggedInUser == undefined) {
         const token = localStorage.getItem("key");
@@ -48,6 +49,18 @@ export class AuthService implements OnInit {
     });
   }
   
+  reloadUser()
+  {
+    if(this.loggedInUser != undefined){
+      this.userService.GetByEmail(this.loggedInUser.email).subscribe(resp => {
+        console.log(resp)
+        this.loggedInUser = resp;
+        this._isLoggedIn$.next(true);
+      });
+    }
+}
+
+ 
 
   login(entity:Login)
   {
@@ -60,7 +73,7 @@ export class AuthService implements OnInit {
       })
 
     },error =>{
-      console.log(error)
+      
     })
   }
   logout()
@@ -68,14 +81,15 @@ export class AuthService implements OnInit {
     //this.isLoggedIn = false;
     if(localStorage.getItem("key") !="")
       localStorage.removeItem("key")
-      this.loggedInUser =undefined
+    this.loggedInUser =undefined
+    this._isLoggedIn$.next(false);
+
   }
   register(entity:Register)
   {
     this.http.post<{status:string,message:string}>(this.url + '/register', entity).subscribe(response =>{
-      console.log(response.status)
     },error =>{
-      console.log(error)
+      
     })
   }
   storeToken(data:{key:string,token:string})
@@ -88,8 +102,7 @@ export class AuthService implements OnInit {
 
   isAuthenticated()
   {
-    //return this.isLoggedIn;
-    return true;
+    return this._isLoggedIn$.value
   }
   isAdmin()
   {
@@ -98,7 +111,6 @@ export class AuthService implements OnInit {
     var token= localStorage.getItem("key");
     if(token !=null){
       var decodedToken = this.getDecodedAccessToken(token);
-      console.log(decodedToken);
       var roles = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
       if(roles == "Admin")
       {

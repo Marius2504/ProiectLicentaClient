@@ -1,12 +1,12 @@
-$headerheight : 130px;
+$headerheight : 60px;
 $songHeight: 90px;
 .main{
     flex: 1;
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-    height: calc(100vh - $headerheight);
-    min-height: 700px;
+    min-height: calc(100vh - $headerheight);
+    
     background-color: black;
 }
 .rowElements{

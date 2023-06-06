@@ -1,1 +1,35 @@
-<p>myplaylists works!</p>
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <div class="input-group">
+                    <h1>Playlists</h1>
+                    <h4>Your playlists</h4>
+                </div>
+            </form>
+        </div>
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <div class="input-group">
+                    <ol class="playlists">
+                        <li *ngFor="let playlist of playlists" class="playlistItem">
+                            <img *ngIf="aplaylist.imagePath;else other_content" src="{{playlist.imagePath}}" alt="" width="50px" height="50px">
+                            <ng-template #other_content>
+                                <img src="../../../../assets/song.png" alt="aa" width="50px" height="50px">
+                            </ng-template>
+
+                            <div class="title">
+                                {{playlist.name}}
+                            </div>
+                            <div class="likes">
+                                {{playlist.clientIds.length}}
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+

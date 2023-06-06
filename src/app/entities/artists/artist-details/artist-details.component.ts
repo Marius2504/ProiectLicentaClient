@@ -17,7 +17,7 @@ import { LocationService } from 'src/app/services/location.service';
   styleUrls: ['./artist-details.component.scss']
 })
 export class ArtistDetailsComponent implements OnInit{
-  artist:Artist = new Artist(0,"","","",[],[],[])
+  artist:Artist = new Artist()
   songs:Song[] = []
   albums:Album[] = []
   events:Event[] = []

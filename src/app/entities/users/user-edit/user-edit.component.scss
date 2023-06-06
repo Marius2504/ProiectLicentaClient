@@ -1,0 +1,11 @@
+$headerheight : 60px;
+$songHeight: 90px;
+body{
+  min-height: calc(100vh - $headerheight - $songHeight);
+}
+.upload{
+    font-weight:bold;
+    color:#28a745;
+    margin-left: 15px;
+    line-height: 36px;
+  }

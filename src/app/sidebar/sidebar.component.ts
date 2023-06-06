@@ -15,6 +15,7 @@ export class SidebarComponent implements OnInit {
   @ViewChild('modeText') modeText: ElementRef<HTMLElement> | undefined;
   modeSwitch:boolean = false;
   isLogged:boolean = false;
+  isAdmin:boolean = false;
   id:string = "";
   
 
@@ -24,7 +25,8 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe(Response =>{
       this.isLogged = Response; 
-  })
+      this.isAdmin = this.authService.isAdmin()
+    })
   }
 
   toggleClickEvent() {
@@ -45,6 +47,10 @@ export class SidebarComponent implements OnInit {
         this.modeText.nativeElement.innerText = "Dark mode";
       }
     }
+  }
+  Logout()
+  {
+    this.authService.logout();
   }
 }
 

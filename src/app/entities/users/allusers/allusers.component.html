@@ -1,1 +1,39 @@
-<p>allusers works!</p>
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <div class="input-group">
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Email conf.</th>
+                            <th scope="col">Phone</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let user of users;index as i" class="userItem" routerLink="../user/{{user.id}}">
+                            <th scope="row">{{i+1}}</th>
+                            <td>
+                                <img *ngIf="user.imagePath;else other_content" src="{{user.imagePath}}" alt="" width="50px" height="50px">
+                                <ng-template #other_content>
+                                <img src="../../../../assets/user.png" alt="aa" width="50px" height="50px">
+                                </ng-template>
+                            </td>
+                            <td>{{user.name}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.emailConfirmed}}</td>
+                            <td>{{user.phoneNumber}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+

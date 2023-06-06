@@ -20,7 +20,7 @@
             <form action="">
                 <div class="input-group">
                     <label>
-                        <img class="profile" *ngIf="artist.imageSrc;else other" src="{{artist.imageSrc}}" alt="" width="30px" height="30px">
+                        <img class="profile" *ngIf="artist.imagePath;else other" src="{{artist.imagePath}}" alt="" width="30px" height="30px">
                         <ng-template #other>
                             <img class="profile" src="../../../../assets/user.png" alt="aa" width="30px" height="30px">
                         </ng-template>

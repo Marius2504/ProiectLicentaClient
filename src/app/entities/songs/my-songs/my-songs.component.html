@@ -1,0 +1,35 @@
+<body>
+  <div class="wrapper">
+    <div class="form-wrapper sign-in">
+      <form action="">
+        <div class="input-group">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let song of songs;index as i" class="songItem" routerLink="../song/{{song.id}}/edit">
+                <th scope="row">{{i+1}}</th>
+                <td>
+                  <img *ngIf="song.imagePath;else other_content" src="{{song.imagePath}}" alt="" width="50px"
+                    height="50px">
+                  <ng-template #other_content>
+                    <img src="../../../../assets/song.png" alt="aa" width="50px" height="50px">
+                  </ng-template>
+                </td>
+                <td>{{song.name}}</td>
+                <td><i click-stop-propagation (click)="deleteItem(song.id)" class="bi bi-trash3-fill" style="color: brown;font-size: 25px;"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+  <button type="button" class="btn btn-success" routerLink="../song/create"><i class="bi bi-plus-circle"></i> Add new song</button>
+</body>

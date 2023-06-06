@@ -1,1 +1,28 @@
-<p>album-create works!</p>
+<body>
+    <form>
+        <div class="form-group">
+            <label for="name">Album name</label>
+            <input type="text" class="form-control" aria-describedby="Name of the genre" name="name" [(ngModel)]="album.name"
+                placeholder="Enter name" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Description</label>
+            <textarea class="input" role="textbox" type="text" class="form-control" rows="5"  name="desc" [(ngModel)]="album.description"
+                placeholder="Enter description" required></textarea>
+                
+        </div>
+        <div class="form-group">
+            <label for="name">Released year</label>
+            <input type="text" class="form-control" aria-describedby="Name of the genre" name="year" [(ngModel)]="album.year"
+                placeholder="Enter year" required>
+        </div>
+
+        <div>
+            <input type="file" #fileImage placeholder="Choose file" (change)="uploadAlbumImage(fileImage.files)" style="display:none;">
+            <button type="button" class="btn btn-success" (click)="fileImage.click()">Upload image</button>
+            <p for="upload" class="text">Song uploaded</p>
+            <p for="error" class="text">Error</p>
+        </div>
+    </form>
+    <button type="submit" class="btn btn-primary" (click)="save()">Add</button>
+</body>

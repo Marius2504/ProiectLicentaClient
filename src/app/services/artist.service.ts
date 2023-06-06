@@ -9,4 +9,9 @@ import { GenericService } from './generic.service';
 export class ArtistService extends GenericService<Artist> {
 
   constructor(http:HttpClient) { super(http,'https://localhost:7255/api/Artist') }
+
+  getArtistOfUser(id:string){
+    return this.http.get<Artist>(this.url + '/user/' + id)
+  }
+  
 }

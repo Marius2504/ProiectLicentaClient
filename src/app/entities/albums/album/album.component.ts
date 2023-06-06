@@ -11,12 +11,11 @@ import { ArtistService } from 'src/app/services/artist.service';
   styleUrls: ['./album.component.scss']
 })
 export class AlbumComponent implements OnInit{
-  @Input() currentItem= new Album(0,"","","",0,0)
-  artist:Artist = new Artist(0,"","","",[],[],[])
+  @Input() currentItem= new Album()
+  artist:Artist = new Artist()
 
   constructor(private artistService:ArtistService,private router:Router , private albumService:AlbumService){ }
   ngOnInit(): void {
-    this.currentItem.name = "Won't forget you"
     this.getArtist()
   }
 

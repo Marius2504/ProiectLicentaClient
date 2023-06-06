@@ -14,11 +14,10 @@
   <nav #nav class="sidebar ">
     <header>
       <div class="image-text">
-        <span class="image">
-          <!--<img src="logo.png" alt="">-->
-        </span>
         <div class="text logo-text">
-          <span class="name">Remix</span>
+          <a class="title" routerLink="/">
+            <span >Remix</span>
+          </a>
         </div>
       </div>
       <i class='bx bx-chevron-right toggle' #toggle (click)="toggleClickEvent()"></i>
@@ -45,9 +44,39 @@
             </a>
           </li>
           <li *ngIf="isLogged" class="nav-link">
-            <a href="#">
+            <a routerLink="/myplaylists">
               <i class='bx bx-heart icon'></i>
               <span class="text nav-text">Playlists</span>
+            </a>
+          </li>
+          <li *ngIf="isLogged" class="nav-link">
+            <a routerLink="/mySongs">
+              <i class='bx bx-heart icon'></i>
+              <span class="text nav-text">My songs</span>
+            </a>
+          </li>
+          <li *ngIf="isLogged" class="nav-link">
+            <a routerLink="/myAlbums">
+              <i class='bx bx-heart icon'></i>
+              <span class="text nav-text">My albums</span>
+            </a>
+          </li>
+          <li *ngIf="isLogged" class="nav-link">
+            <a routerLink="/allgenres">
+              <i class='bx bx-heart icon'></i>
+              <span class="text nav-text">Genres</span>
+            </a>
+          </li>
+          <li *ngIf="isLogged" class="nav-link">
+            <a routerLink="/event/create">
+              <i class='bx bx-heart icon'></i>
+              <span class="text nav-text">Events</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a routerLink="/users">
+              <i class='bx bx-bell icon'></i>
+              <span class="text nav-text">Users</span>
             </a>
           </li>
           <li class="nav-link">
@@ -66,7 +95,7 @@
       </div>
       <div *ngIf="isLogged" class="bottom-content">
         <li class="">
-          <a href="#">
+          <a routerLink="/" (click)="Logout()">
             <i class='bx bx-log-out icon'></i>
             <span class="text nav-text">Logout</span>
           </a>

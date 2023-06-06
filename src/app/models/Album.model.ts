@@ -7,7 +7,7 @@ export class Album{
     public artistId:number =0
 
  
-    constructor(id:number,name:string,description:string,imagePath:string,year:number,artistId:number) {
+    constructor(id:number= 0,name:string="",description:string= "",imagePath:string= "",year:number=2000,artistId:number=0) {
         this.id=id;
         this.name=name;
         this.description=description;

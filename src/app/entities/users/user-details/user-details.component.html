@@ -8,7 +8,11 @@
                     <label>Email: {{currentUser?.email}}</label>
                 </div>
                 <div class="input-group">
-                    <label>Confirmed email: Yes</label>
+                    <label *ngIf="currentUser?.emailConfirmed">Confirmed email: Yes</label>
+                    <label class="profile" *ngIf="currentUser?.emailConfirmed;else other">{{currentUser?.emailConfirmed}}</label>
+                    <ng-template #other>
+                        <label>Confirmed email: No</label>
+                    </ng-template>
                 </div>
                 <div class="input-group">
                     <label>phoneNumber: {{currentUser?.phoneNumber}}</label>

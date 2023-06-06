@@ -1,0 +1,10 @@
+<body>
+   <p class="title">Genres</p>
+   <button type="button" class="btn btn-success" routerLink="../genre/create">Add</button>
+   <div class="rowElements">
+      <div *ngFor="let item of genres">
+         <app-genre [genre]="item">
+         </app-genre>
+      </div>
+   </div>
+</body>

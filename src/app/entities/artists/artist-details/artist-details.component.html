@@ -4,7 +4,7 @@
             <form action="">
                 <h1>{{artist.name}}</h1>
 
-                <img *ngIf="artist.imageSrc;else other_content" src="{{artist.imageSrc}}" alt="" width="50px"
+                <img *ngIf="artist.imagePath;else other_content" src="{{artist.imagePath}}" alt="" width="50px"
                     height="50px">
                 <ng-template #other_content>
                     <img src="../../../../assets/user.png" alt="aa" width="50px" height="50px">

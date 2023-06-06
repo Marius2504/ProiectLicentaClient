@@ -1,1 +1,36 @@
-<p>song-create works!</p>
+<body>
+    <form>
+        <div class="form-group">
+            <label for="name">Song name</label>
+            <input type="text" class="form-control" aria-describedby="Name of the genre" name="nameSong" [(ngModel)]="song.name"
+                placeholder="Enter name" required>
+        </div>
+        <label for="album">Select genre</label>
+        <div *ngFor="let genre of genres" class="form-check">
+            <input class="form-check-input" type="radio" [(ngModel)]="selectedGenre" name="selectedGenre" value="{{genre.id}}">
+            <label class="form-check-label" for="genre">
+                {{genre.name}}
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="album">Select album</label>
+            <select class="form-control" [(ngModel)]="selectedAlbum" name="selectedAlbum">
+              <option>Single</option>
+              <option *ngFor="let album of albums" value="{{album.id}}" >{{album.name}}</option>
+            </select>
+        </div>
+        <div>
+            <input type="file" #fileSong placeholder="Choose file" (change)="uploadSong(fileSong.files)" style="display:none;">
+            <button type="button" class="btn btn-success" (click)="fileSong.click()">Upload song</button>
+            <p for="upload" class="text">Song uploaded</p>
+            <p for="error" class="text">Error</p>
+        </div>
+        <div>
+            <input type="file" #fileImage placeholder="Choose file" (change)="uploadSongImage(fileImage.files)" style="display:none;">
+            <button type="button" class="btn btn-success" (click)="fileImage.click()">Upload image</button>
+            <p for="upload" class="text">Song uploaded</p>
+            <p for="error" class="text">Error</p>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="save()">Add</button>
+    </form>
+</body>

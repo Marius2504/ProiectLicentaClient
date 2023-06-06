@@ -11,6 +11,7 @@ export abstract class GenericService<T> {
   constructor(protected http: HttpClient, protected urlPassed: string) { this.url = urlPassed }
 
   Add(entity: T) {
+    console.log(entity)
     return this.http.post<T>(this.url, entity)
   }
   Get(id: number) {
@@ -23,6 +24,7 @@ export abstract class GenericService<T> {
     return this.http.get<T[]>(this.url)
   }
   Update(entity: T) {
+    console.log(entity)
     return this.http.put<T>(this.url + '/update', entity)
   }
   Delete(id: number) {

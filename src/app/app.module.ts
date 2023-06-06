@@ -26,7 +26,16 @@ import { UserDetailsComponent } from './entities/users/user-details/user-details
 import { UserEditComponent } from './entities/users/user-edit/user-edit.component';
 import { ClickStopPropagation } from './directives/ClickStopPropagation.directive';
 import { AppRoutingModel } from './app-routing.model';
-
+import { AllusersComponent } from './entities/users/allusers/allusers.component';
+import { MySongsComponent } from './entities/songs/my-songs/my-songs.component';
+import { GenreCreateComponent } from './entities/genres/genre-create/genre-create.component';
+import { GenreComponent } from './entities/genres/genre/genre.component';
+import { GenreEditComponent } from './entities/genres/genre-edit/genre-edit.component';
+import { AllgenreComponent } from './entities/genres/allgenre/allgenre.component';
+import { SongCreateComponent } from './entities/songs/song-create/song-create.component';
+import { MyAlbumsComponent } from './entities/albums/my-albums/my-albums.component';
+import { AlbumCreateComponent } from './entities/albums/album-create/album-create.component';
+import { EventCreateComponent } from './entities/events/event-create/event-create.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +57,17 @@ import { AppRoutingModel } from './app-routing.model';
     RegisterComponent,
     ClickStopPropagation,
     UserDetailsComponent,
-    UserEditComponent
+    UserEditComponent,
+    AllusersComponent,
+    MySongsComponent,
+    GenreCreateComponent,
+    GenreComponent,
+    GenreEditComponent,
+    AllgenreComponent,
+    SongCreateComponent,
+    MyAlbumsComponent,
+    AlbumCreateComponent,
+    EventCreateComponent
   ],
   imports: [
     BrowserModule,

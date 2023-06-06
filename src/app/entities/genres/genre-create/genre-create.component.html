@@ -1,0 +1,16 @@
+<body>
+    <form>
+        <div class="form-group">
+            <label for="name">Genre name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="Name of the genre"
+                placeholder="Enter name" required [(ngModel)]="genre.name" name="name">
+        </div>
+        <div>
+            <label for="image">Description image for genre</label>
+            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+            <button type="button" class="btn btn-success" (click)="file.click()">Add</button>
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="save()">Submit</button>
+    </form>
+</body>

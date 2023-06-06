@@ -1,0 +1,12 @@
+$headerheight : 60px;
+$songHeight: 90px;
+body{
+  min-height: calc(100vh - $headerheight - $songHeight);
+}
+.songItem{
+    cursor: pointer;
+}
+.btn{
+  margin-left: 20px;
+  font-weight: 600;
+}
