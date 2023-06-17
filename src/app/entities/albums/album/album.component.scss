@@ -1,5 +1,5 @@
 .mainDiv{
-    background-color: rgb(89, 90, 90);
+    background-color: #3e4764;
     width: 150px;
     height: 230px;
     position: relative;
@@ -8,7 +8,7 @@
     border: 0px;
     text-align: center;
     cursor: pointer;
-    transition: 3s;
+    transition: .5s;
 }
 .img{
     height: 70%;
@@ -18,7 +18,7 @@
 .info{
     padding-left: 5px;
     text-align: left;
-    color: aliceblue;
+    color: rgb(255, 255, 255);
     font-size: large;
     font-weight: 500;
 }
@@ -45,9 +45,9 @@
 .button .bx{
     margin-left: -3px;
 }
-.mainDiv:hover .button {
-    opacity: 1;
-  }
+.mainDiv:hover {
+    background-color: #5f6783;
+}
 .button:hover{
     background-color: lighten(rgb(41, 223, 80), 10%);
 }

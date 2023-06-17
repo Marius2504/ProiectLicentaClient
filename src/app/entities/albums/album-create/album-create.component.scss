@@ -1,9 +1,14 @@
 $headerheight : 60px;
-$songHeight: 90px;
+$songHeight: 80px;
 body{
-  min-height: calc(100vh - $headerheight - $songHeight);
+  min-height: calc(100vh - $songHeight);
+  height: 100%;
   padding: 20px;
 }
 .text{
     display: none;
+}
+.form-group
+{
+  max-width: 550px;
 }

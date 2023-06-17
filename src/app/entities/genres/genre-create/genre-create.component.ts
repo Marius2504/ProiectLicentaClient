@@ -15,7 +15,10 @@ export class GenreCreateComponent implements OnInit{
 
   constructor(private genreService:GenreService){}
   ngOnInit(): void {
-    
+   // this.genre.id = 9;
+  //  this.genre.name = "Country"
+  //  this.genre.imagePath = "https://localhost:7255/Resources\\Images\\genre\\9.avif"
+   // this.UpdateGenre();
   }
   uploadFile = (files: any) => {
     if (files.length === 0) {
@@ -24,33 +27,35 @@ export class GenreCreateComponent implements OnInit{
     let fileToUpload = <File>files[0];
     this.formData = new FormData();
     this.formData.append('file', fileToUpload, fileToUpload.name);
-    //this.formData.append(this.user.id,'id')
   }
   save()
   {
-    console.log(this.genre.name)
     this.genreService.Add(this.genre).subscribe(resp =>{
       this.genre = resp;
       this.formData.append(this.genre.id.toString(),'id')
-      this.genreService.UploadImage(this.formData,this.genre.id)
+      this.genreService.UploadImage(this.formData)
       .subscribe({
         next: (event:any) => {
           if (event.type === HttpEventType.Response) {
+            
             var response = {dbPath: ''};
+            console.log(event.body)
             response = event.body
             this.genre.imagePath ="https://localhost:7255/" + response.dbPath;
             
             //Update genre
-            this.genreService.Update(this.genre).subscribe(Response => {
-              this.genre = Response
-            })
+            this.UpdateGenre();
           }
         },
         error: (err: HttpErrorResponse) => console.log(err)
       });
     })
-      
-    
+  }
+  UpdateGenre()
+  {
+    this.genreService.Update(this.genre).subscribe(Response => {
+      this.genre = Response
+    })
   }
 
 }

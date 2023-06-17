@@ -8,37 +8,82 @@ import { GenericService } from './generic.service';
   providedIn: 'root'
 })
 export class SongService extends GenericService<Song>{
-  private currentSongSource=new BehaviorSubject<Song>(new Song("",0,"","",0,0,0,0));
-  public currentSong =this.currentSongSource.asObservable(); 
 
-  private playStatusSource = new BehaviorSubject<string>('play');
-  public playStatus = this.playStatusSource?.asObservable();
-
+  private currentSongSource=new BehaviorSubject<Song>(new Song());
+  public currentSong=this.currentSongSource.asObservable();
   
   private audioSource =new BehaviorSubject<HTMLAudioElement>(new Audio);
-  public audio$ = this.audioSource.asObservable();
+  public audio$ : Observable<HTMLAudioElement> | undefined
+
+  private playStatusSource = new BehaviorSubject<string>("play")
+  public playStatus$ = this.playStatusSource.asObservable();
+
+  private subscribeSource = new BehaviorSubject<boolean>(false)
+  public subscribe$ = this.subscribeSource.asObservable();
+
   constructor(http:HttpClient) {
      super(http,'https://localhost:7255/api/Song') 
      const songId = localStorage.getItem("currentSong");
       if(songId != null)
       {
-        this.getSong(Number(songId));
+        this.Get(parseInt(songId)).subscribe(resp =>{
+          this.loadSong(resp); 
+        })
       }
-    }
-  private getSong(id:number)
-  {
-    this.Get(id).subscribe(resp =>{
-      this.currentSongSource.next(resp);
-      
-      this.audioSource.value.src = this.currentSongSource.value.serverLink
-  
-      this.audioSource.value.onloadedmetadata = ()=>{
-        this.audioSource.next(this.audioSource.value);
-      }
-      
-      this.currentSong = this.currentSongSource.asObservable();
-    })
   }
+  setCurrentSong(song:Song)
+  {
+    this.loadSong(song);
+    this.storeSong(song.id);
+  }
+
+  loadSong(song:Song)
+  {
+    //functie care se ocupa de incarcarea corecta a melodiei
+    this.currentSongSource.next(song);
+    this.audio$ = undefined
+    this.audioSource.value.src = this.currentSongSource.value.serverLink
+
+    this.audioSource.value.onloadedmetadata = ()=>{
+      this.audio$ = this.audioSource.asObservable()
+      this.subscribeSource.next(true);
+    }
+  }
+  storeSong(id:number)
+  {
+    if(localStorage.getItem("currentSong") !="")
+      localStorage.removeItem("currentSong")
+
+    localStorage.setItem("currentSong",id.toString())
+  }
+  isPaused():boolean
+  {
+    return this.audioSource.value.paused
+  }
+
+  playSong()
+  {
+    this.audioSource.value.play();
+    this.playStatusSource.next("pause")
+  }
+  stopSong()
+  {
+    this.audioSource.value.pause();
+    this.playStatusSource.next("play")
+  }
+
+  changeCurrentTime(value:number)
+  {
+    this.audioSource.value.currentTime = value;
+  }
+  changeVolume(value:number)
+  {
+    this.audioSource.value.volume = value;
+  }
+  getTrending(start:number,cantity:number): Observable<Song[]> {
+    return this.http.get<Song[]>(this.url+ '/trending/' + start +'/'+ cantity)
+  }
+
   getAllSongsOfAlbum(id:number): Observable<Song[]> {
     return this.http.get<Song[]>(this.url+ '/album/' + id)
   }
@@ -49,56 +94,6 @@ export class SongService extends GenericService<Song>{
   getSongWithIncludes(id:number): Observable<Song> {
     return this.http.get<Song>(this.url+ '/includes/' + id)
   }
-
-  
-  setCurrentSong(song:Song)
-  {
-    this.currentSongSource.next(song);
-    this.storeSong(song.id)
-  }
-
-  setPlayStatus(status:string)
-  {
-    if(status == "play")
-    {
-      this.playStatusSource.next("play");
-    }
-    else
-    {
-      this.playStatusSource.next("pause");
-    }
-  }
-
-  changePlayIcon(textClass:string)
-  {
-    this.playStatusSource.next(textClass);
-  }
-
-  storeSong(id:number)
-  {
-    if(localStorage.getItem("currentSong") !="")
-      localStorage.removeItem("currentSong")
-
-    localStorage.setItem("currentSong",id.toString())
-  }
-
-  playSong(source:string)
-  {
-    
-    if(this.audioSource.value.src != source.replaceAll("\\","/"))
-    {
-      this.audioSource.value.src = source
-      this.audioSource.value.onloadedmetadata = ()=>{
-        this.audioSource.next(this.audioSource.value);
-      }
-    }
-    this.audioSource.value.play();
-   // this.audio.play();
-  }
-  stopSong()
-  {
-    this.audioSource.value.pause();
-  }
   addLike(song:Song,userId:string)
   {
     return this.http.post<Song>(this.url+ '/addLike/' + userId + '/' + song.id,{})
@@ -107,15 +102,7 @@ export class SongService extends GenericService<Song>{
   {
     return this.http.post<Song>(this.url+ '/removeLike/' + userId + '/' + song.id,{})
   }
-  changeCurrentTime(value:number)
-  {
-    this.audioSource.value.currentTime = value;
-  }
-  changeVolume(value:number)
-  {
-    
-    this.audioSource.value.volume = value;
-  }
+  
 
   UploadImage(formData:FormData)
   {

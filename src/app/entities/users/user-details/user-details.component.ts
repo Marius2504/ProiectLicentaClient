@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent {
-  currentUser:User|undefined
+  user:User = new User()
   id:number = 0
   constructor(private route:ActivatedRoute, private userService:UserService){}
 
@@ -20,10 +20,14 @@ export class UserDetailsComponent {
       
       if(this.id !=undefined && this.id!=null){
         this.userService.Get(this.id).subscribe(response =>{
-          this.currentUser = response;
+          this.user = response;
         })
       }
     })
+  }
+  replaceImage()
+  {
+    this.user.imagePath = "../../../../assets/user.png";
   }
 
 }

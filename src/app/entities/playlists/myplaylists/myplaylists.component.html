@@ -1,35 +1,37 @@
 <body>
-    <div class="wrapper">
-        <div class="form-wrapper sign-in">
-            <form action="">
-                <div class="input-group">
-                    <h1>Playlists</h1>
-                    <h4>Your playlists</h4>
-                </div>
-            </form>
-        </div>
-        <div class="form-wrapper sign-in">
-            <form action="">
-                <div class="input-group">
-                    <ol class="playlists">
-                        <li *ngFor="let playlist of playlists" class="playlistItem">
-                            <img *ngIf="aplaylist.imagePath;else other_content" src="{{playlist.imagePath}}" alt="" width="50px" height="50px">
-                            <ng-template #other_content>
-                                <img src="../../../../assets/song.png" alt="aa" width="50px" height="50px">
-                            </ng-template>
-
-                            <div class="title">
-                                {{playlist.name}}
-                            </div>
-                            <div class="likes">
-                                {{playlist.clientIds.length}}
-                            </div>
-                        </li>
-                    </ol>
-                </div>
-            </form>
-        </div>
-    </div>
+    <p class="title">Liked songs</p>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let song of songs;index as i" class="songItem" routerLink="../song/{{song.id}}">
+                <th scope="row">{{i+1}}</th>
+                <td>
+                    <div *ngIf="song.id !=0" class="container1">
+                        <img class="image" *ngIf="song.imagePath;else other" src="{{song.imagePath}}" alt="">
+                        <ng-template #other>
+                            <img class="image" src="../../../../assets/song.png" alt="aa">
+                        </ng-template>
+                    </div>
+                </td>
+                <td>{{song.name}}</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
-
-
+<!--
+    public id:number = 0;
+    public name:string = "";
+    public duration:number = 0;
+    public imagePath:string="";
+    public serverLink:string = "";
+    public artistId:number=0;   
+    public genreId:number=0;
+    public albumId:number=0;
+    public messages:Message[]=[]
+-->

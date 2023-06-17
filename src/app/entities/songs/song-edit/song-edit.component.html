@@ -1,31 +1,40 @@
 <body>
     <div class="wrapper">
-        <div class="form-wrapper">
-            <form action="">
-                <h2>Edit</h2>
-                <div class="input-group">
-                    <input type="text" required [(ngModel)]="song.name" name="name">
-                    <label>Name</label>
-                </div>
-                <div class="input-group">
-                    <input type="text" required [(ngModel)]="song.serverLink" name="serverLink">
-                    <label>Location on disk</label>
-                </div>
-                <div class="input-group">
-                    <input type="text" required [(ngModel)]="song.genreId" name="genreId">
-                    <label>Genre id</label>
-                </div>
-                <div class="input-group">
-                    <input type="text" required [(ngModel)]="song.albumId" name="albumId">
-                    <label>Album id</label>
-                </div>
-                <div class="input-group">
-                    <input type="text" required [(ngModel)]="song.imagePath" name="imagePath">
-                    <label>Image Path</label>
-                </div>
-                <button type="submit" (click)="Update()">Update</button>
-            </form>
+        <h2 class="title">Edit song</h2>
+        <div class="container1">
+            <img class="img" *ngIf="song.imagePath;else other_content" src="{{song.imagePath}}" alt=""
+                height="50px">
+            <ng-template #other_content>
+                <img class="img" src="../../../../assets/song.png" alt="aa">
+            </ng-template>
         </div>
+        
+        <div class="button">
+            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+            <button type="button" class="btn btn-success" (click)="file.click()">Change Image</button>
+        </div>
+        <div class="button">
+            <input type="file" #fileSong placeholder="Choose file" (change)="uploadFileSong(file.files)" style="display:none;">
+            <button type="button" class="btn btn-primary" (click)="fileSong.click()">Change Song</button>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" class="form-control" required [(ngModel)]="song.name" name="name"
+                placeholder="Enter name">
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre</label>
+            <select class="form-control" required [(ngModel)]="song.genreId" name="selectedGenre">
+                <option *ngFor="let genre of genres" value="{{genre.id}}" >{{genre.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="album">Album</label>
+            <select class="form-control" required [(ngModel)]="song.albumId" name="selectedAlbum">
+                <option *ngFor="let album of albums" value="{{album.id}}" >{{album.name}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="Update()">Update</button>
     </div>
 </body>
 

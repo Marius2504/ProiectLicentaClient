@@ -16,19 +16,19 @@
                     <p>Password must be at least 6 characters long and contains: a special character and a digit </p>
                 </div>
                 <div class="input-group">
-                    <input type="text" required [(ngModel)]="username" name="username">
+                    <input type="text" required [(ngModel)]="username" name="username" autocomplete="off">
                     <label>Username</label>
                 </div>
                 <div class="input-group">
-                    <input type="text" required [(ngModel)]="email" name="email">
+                    <input type="email" required [(ngModel)]="email" name="email" autocomplete="off">
                     <label>Email</label>
                 </div>
                 <div class="input-group">
-                    <input type="password" required [(ngModel)]="password" name="password">
+                    <input type="password" required [(ngModel)]="password" name="password" autocomplete="off">
                     <label>Password</label>
                 </div>
                 <div class="input-group">
-                    <input type="password" required [(ngModel)]="confirmPassword" name="confirmPassword">
+                    <input type="password" required [(ngModel)]="confirmPassword" name="confirmPassword" autocomplete="off">
                     <label>Confirm password</label>
                 </div>
                 <div class="remember">
@@ -40,7 +40,7 @@
                 </div>
                 <button type="submit" (click)="RegisterFromComponent()">Sign Up</button>
                 <div class="singUp-link">
-                    <p>Already have an account? <a href="#" class="signUpBtn-link">Sign in</a></p>
+                    <p>Already have an account? <a routerLink="/login"  class="signUpBtn-link">Sign in</a></p>
                 </div>
             </form>
         </div>

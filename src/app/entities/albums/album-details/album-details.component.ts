@@ -19,6 +19,7 @@ export class AlbumDetailsComponent implements OnInit {
   album:Album = new Album()
   albumLikes:number = 0;
   id:number = 0
+  slideCountSongs = 0;
 
   constructor(private route:ActivatedRoute,
      private songService:SongService,
@@ -60,6 +61,23 @@ export class AlbumDetailsComponent implements OnInit {
     this.artistService.Get(this.album.artistId).subscribe(Response=>{
       this.artist = Response;
     })
+  }
+  slideSongsLeft(): void {
+    this.slideCountSongs++;
+    this.slide("song",this.slideCountSongs)
+  }
+  slideSongsRight(): void {
+    this.slideCountSongs--;
+    this.slide("song",this.slideCountSongs)
+  }
+  slide(element:string,slideCount:number)
+  {
+    const elements = document.querySelectorAll('.'+element) as NodeListOf<HTMLElement>;
+    const translateX = -100 * slideCount;
+
+    elements.forEach((element) => {
+      element.style.transform = `translateX(${translateX}%)`;
+    });
   }
 
 }

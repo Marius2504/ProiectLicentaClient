@@ -1,11 +1,17 @@
-<div *ngIf="isLogged"  class="master_play footer">
+
+<div class="master_play footer">
     <div class="wave">
         <div class="wave1"></div>
         <div class="wave1"></div>
         <div class="wave1"></div>
     </div>
-    <img src="../../assets/song.png" alt="no img">
-    <h5>{{song?.name}} <br>
+    <div *ngIf="songPlaying.id !=0" class="container1">
+        <img class="image" *ngIf="songPlaying.imagePath;else other" src="{{songPlaying.imagePath}}" alt="">
+        <ng-template #other>
+            <img class="image" src="../../../../assets/song.png" alt="aa">
+        </ng-template>
+    </div>
+    <h5>{{songPlaying.name}} <br>
         <div class="subtitle">{{artist?.name}}</div>
     </h5>
     <div class="icon">
@@ -15,7 +21,7 @@
     </div>
     <span id="currentStart">{{getMinutes()}}:{{getSeconds()}}</span>
     <div class="bar">
-        <input #valCurrentTime (change)="changeCurrentTime()" type="range" id="seek" min="0" value="{{progressBar}}" max="100">
+        <input #valCurrentTime (change)="changeCurrentTime()" type="range" min="0" value="{{progressBar}}" max="100">
         <div #volCurrentTime class="bar2" id="bar2"></div>
         <div #dotCurrentTime class="dot"></div>
     </div>
@@ -27,4 +33,5 @@
         <div #dotVolume class="dot" id="vol_dot"></div>
     </div>
 </div>
+
 <!--*ngIf="song!=undefined && song.name"-->

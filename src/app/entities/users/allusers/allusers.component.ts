@@ -15,9 +15,24 @@ export class AllusersComponent {
   
   constructor(private http: HttpClient, private userService:UserService) { }
   ngOnInit() {
+    this.getUsers()
+  }
+  getUsers()
+  {
     this.userService.GetAllUsers().subscribe(resp =>{
       this.users = resp;
       console.log(this.users)
+    })
+  }
+  replaceImage(index:number)
+  {
+    console.log("da")
+    this.users[index].imagePath = "../../../../assets/user.png";
+  }
+  deleteItem(id:string)
+  {
+    this.userService.deleteUser(id).subscribe(resp =>{
+      this.getUsers();
     })
   }
 }

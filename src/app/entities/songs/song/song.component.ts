@@ -13,65 +13,45 @@ import { SongService } from 'src/app/services/song.service';
 })
 export class SongComponent implements OnInit,AfterViewInit {
   @Input() currentItem: Song = new Song()
+  songPlaying: Song = new Song();
   @ViewChild('buttonId') button: ElementRef<HTMLElement> | undefined;
   @ViewChild('image') image: ElementRef<HTMLElement> | undefined;
-  playStatusSubscription : Subscription | undefined
-  artist:Artist = new Artist()
-  playStatus:string = "play";
-  constructor(private router: Router, private songService: SongService, private artistService:ArtistService) {
-   }
-
-  ngOnInit(): void {
-    
-  }
-
+  artist: Artist = new Artist()
+  playStatus: string = "play";
+  constructor(private router: Router, private songService: SongService, private artistService: ArtistService) { }
   ngAfterViewInit(): void {
     this.getActualSong();
     this.getArtist();
   }
 
-  getArtist()
-  {
-    if(this.currentItem!=undefined){
-      
-      this.artistService.Get(this.currentItem.artistId).subscribe(response=>{
-        this.artist = response
-    
-      })
-    }
+  ngOnInit(): void { 
   }
-  getActualSong()
-  {
-    this.songService.currentSong.subscribe(Response =>{
-      if(Response.id == this.currentItem.id)
-      {
-        this.playStatusSubscription = this.songService.playStatus.subscribe( resp =>{
-          if(Response.id == this.currentItem.id){
-            this.playStatus = resp;
-            this.setButton();
-          }
-        })
-      }
-      else if(this.playStatus == "pause" && this.button != null)
-      {
-        this.button.nativeElement.classList.add('bx-play');
-        this.button.nativeElement.classList.remove('bx-pause');
-      }
-      
+  getActualSong() {
+    this.songService.currentSong.subscribe(Response => {
+      this.songPlaying = Response;
+      this.getPlayStatus();
     })
   }
-  setButton()
-  {
+  getPlayStatus() {
+    this.songService.playStatus$.subscribe(resp => {
+      if (this.songPlaying.id == this.currentItem.id) {
+        this.playStatus = resp;
+        this.setButton();
+      }
+      else if (this.playStatus == "pause") {
+        this.playStatus = "play";
+        this.setButton();
+      }
+    })
+  }
+  setButton() {
     if (this.button != null) {
-      
-      if(this.playStatus == "play")
-      {
+
+      if (this.playStatus == "play") {
         this.button.nativeElement.classList.add('bx-play');
         this.button.nativeElement.classList.remove('bx-pause');
       }
-      else
-      {
-        
+      else {
         this.button.nativeElement.classList.remove('bx-play');
         this.button.nativeElement.classList.add('bx-pause');
       }
@@ -79,39 +59,28 @@ export class SongComponent implements OnInit,AfterViewInit {
   }
   play() {
     if (this.button != null) {
-      if(this.playStatus == "play")
-      {
-        this.songService.setCurrentSong(this.currentItem);
-        this.songService.playSong(this.currentItem.serverLink)
-        //"../../../../assets/Shouse-Won-t-Forget-You.mp3"
-        this.playStatus = "pause";
+      if (this.playStatus == "play") {
+        if (this.currentItem.id != this.songPlaying.id) {
+          this.songService.setCurrentSong(this.currentItem);
+          this.songService.playSong();
+        }
+        else {
+          this.songService.playSong();
+        }
       }
-      else
-      {
+      else {
         this.songService.stopSong();
-        this.playStatus = "play";
       }
-      this.setButton();
-      this.songService.setPlayStatus(this.playStatus);
-      
     }
   }
-  /*
+  getArtist() {
+    if (this.currentItem != undefined) {
+      this.artistService.Get(this.currentItem.artistId).subscribe(response => {
+        this.artist = response
+      })
+    }
+  }
 
-  if (this.button.nativeElement.classList.contains('bx-play')) {
-        this.button.nativeElement.classList.remove('bx-play');
-        this.button.nativeElement.classList.add('bx-pause');
-        this.songService.changePlayIcon('bx-pause');
-        this.songService.setCurrentSong(this.currentItem);
-      }
-      else
-      {
-        this.button.nativeElement.classList.add('bx-play');
-        this.button.nativeElement.classList.remove('bx-pause');
-        this.songService.changePlayIcon('bx-play');
-      }
-
-  */
   navigateToDetails() {
     if (this.currentItem != undefined && this.currentItem != null) {
       this.router.navigate(['song', this.currentItem.id]);

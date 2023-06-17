@@ -9,10 +9,14 @@ import { GenreService } from 'src/app/services/genre.service';
 })
 export class GenreComponent implements OnInit {
 @Input() genre = new Genre()
+show:boolean = true;
 
 constructor(private genreService:GenreService){}
-  ngOnInit(): void {
-  }
-  getGenres(){ 
+  ngOnInit(): void {}
+
+  deleteItem()
+  {
+    this.genreService.Delete(this.genre.id).subscribe();
+    this.show = false;
   }
 }

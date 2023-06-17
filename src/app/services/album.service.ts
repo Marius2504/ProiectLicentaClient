@@ -9,6 +9,7 @@ export class AlbumService extends GenericService<Album>   {
     constructor(http:HttpClient) { super(http,'https://localhost:7255/api/Album') }
 
     getAllAlbumsOfArtist(id:number): Observable<Album[]> {
+        console.log(this.url+ '/artist/' + id)
         return this.http.get<Album[]>(this.url+ '/artist/' + id)
     }
     UploadImage(formData:FormData)

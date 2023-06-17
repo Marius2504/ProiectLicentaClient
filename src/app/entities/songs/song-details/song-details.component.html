@@ -1,91 +1,71 @@
 <body>
+    <div *ngIf="currentSong.id !=0"  class="container1">
+        <img *ngIf="currentSong.imagePath;else other_content" src="{{currentSong.imagePath}}" alt="" width="50px" height="50px"
+            class="img">
+        <ng-template #other_content>
+            <img src="../../../../assets/song.png" alt="aa" width="50px" height="50px" class="img">
+        </ng-template>
+    </div>
     <div class="wrapper">
-        <div class="form-wrapper sign-in">
-            <form action="">
-                <h1>{{currentSong.name}} 
-                    <i *ngIf="like" #like (click)="addLike()" class="bi bi-heart-fill"></i>
-                    <i *ngIf="!like" #like (click)="addLike()" class="bi bi-heart"></i>
-                </h1>
-                <div class="input-group">
-                    <label>Duration: {{currentSong.duration}}</label>
-                </div>
-            </form>
+        <div class="section" >
+            <h1> <a routerLink="../../artist/{{artist.id}}" style="color: #fff;">{{artist.name}}</a> -
+                {{currentSong.name}}
+                <i *ngIf="like && user.id!=''" #like (click)="addLike()" class="bi bi-heart-fill" ></i>
+                <i *ngIf="!like && user.id!=''" #like (click)="addLike()" class="bi bi-heart"></i>
+            </h1>
         </div>
 
-        <div class="form-wrapper sign-in">
-            <form action="">
-                <h1>Album</h1>
-                <div class="input-group">
-                    <label> Name: <a routerLink="../../album/{{album.id}}" >{{album.name}}</a></label>
-                </div>
-            </form>
+        <div class="section">
+            <h1>Album</h1>
+            <div *ngIf="album.id !=0">
+                <app-album [currentItem]="album">
+                </app-album>
+            </div>
         </div>
 
-        <div class="form-wrapper sign-in">
-            <form action="">
-                <h1>Artist</h1>
-                
-                <img *ngIf="artist.imagePath;else other_content" src="{{artist.imagePath}}" alt="" width="50px" height="50px">
+
+
+        <div class="section">
+            <h1>Genre : {{genre.name}}</h1>
+        </div>
+
+        <div class="section">
+            <h1>Comments</h1>
+            <div class="addComment">
+                <div class="message">
+                    <img *ngIf="user.imagePath;else other_content" src="{{user.imagePath}}" alt="" width="50px"
+                        height="50px">
+                    <ng-template #other_content>
+                        <img src="../../../../assets/user.png" alt="aa" width="50px" height="50px">
+                    </ng-template>
+                    <textarea class="form-control" id="textarea" placeholder="Enter your comment..." rows="3"
+                        [(ngModel)]="messageSend.text" name="textarea" ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="sendMessage()" >Post </button>
+            </div>
+        </div>
+        <div class="section">
+            <div class="input-group" *ngFor="let message of messages;index as i">
+                <img *ngIf="messageUsers[i]!=undefined;else other_content" src="{{messageUsers[i].imagePath}}" alt=""
+                    width="50px" height="50px" class="imgProfile">
                 <ng-template #other_content>
                     <img src="../../../../assets/user.png" alt="aa" width="50px" height="50px">
                 </ng-template>
-
-                <div class="input-group">
-                    <label>Artist: <a routerLink="../../artist/{{artist.id}}" >{{artist.name}}</a></label>
+                <div class="info" *ngIf="messageUsers[i]!=undefined">
+                    <p>{{messageUsers[i].name}}</p>
+                    <label for="text">
+                        {{message?.text}}
+                        <i *ngIf="verify(message) && user.id!='';else nolike" (click)="removeLikeToMessage($event,message)"
+                            class="bi bi-heart-fill"></i>
+                        <ng-template #nolike>
+                            <i *ngIf="user.id!=''" (click)="addLikeToMessage($event,message)" class="bi bi-heart"></i>
+                        </ng-template>
+                        <i *ngIf="message.whoSentId == user.id" click-stop-propagation (click)="deleteItem(message.id)"
+                            class="bi bi-trash3-fill trash"></i>
+                    </label>
                 </div>
-            </form>
+            </div>
         </div>
-
-        <div class="form-wrapper sign-in">
-            <form action="">
-                <h1>Genre</h1>
-                <div class="input-group">
-                    <label> Genre: {{genre.name}}</label>
-                </div>
-            </form>
-        </div>
-
-        <div class="form-wrapper sign-in">
-            <form action="">
-                <h1>Comments</h1>
-                <div class="addComment">
-                    <form>
-                        <div class="message">
-                            <img *ngIf="user.imagePath;else other_content" src="{{user.imagePath}}" alt="" width="50px" height="50px">
-                            <ng-template #other_content>
-                                <img src="../../../../assets/user.png" alt="aa" width="50px" height="50px">
-                            </ng-template>   
-                            <textarea class="form-control" id="textarea" placeholder="Enter your comment..." rows="3" [(ngModel)]="messageSend.text" 
-                            name="textarea"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" (click)="sendMessage()" >Post </button>
-                      </form>
-                </div>
-            </form>
-        </div>
-        <div class="form-wrapper sign-in">
-            <form action="">
-                <div class="input-group" *ngFor="let message of messages;index as i">
-                    <img *ngIf="messageUsers[i]!=undefined;else other_content" src="{{messageUsers[i].imagePath}}" alt="" width="50px" height="50px" class="imgProfile">
-                        <ng-template #other_content>
-                            <img src="../../../../assets/user.png" alt="aa" width="50px" height="50px">
-                    </ng-template> 
-                    <div class="info" *ngIf="messageUsers[i]!=undefined">
-                        <p>{{messageUsers[i].name}}</p>
-                        <label for="text">
-                            {{message?.text}}
-                            <i *ngIf="verify(message);else nolike" (click)="removeLikeToMessage($event,message)" class="bi bi-heart-fill"></i>
-                            <ng-template #nolike>
-                                <i (click)="addLikeToMessage($event,message)" class="bi bi-heart"></i>
-                            </ng-template>
-                            <i *ngIf="message.whoSentId == user.id" click-stop-propagation (click)="deleteItem(message.id)" class="bi bi-trash3-fill trash" ></i>
-                        </label>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        
 
     </div>
 </body>

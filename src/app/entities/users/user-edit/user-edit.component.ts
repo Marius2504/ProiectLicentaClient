@@ -18,19 +18,15 @@ export class UserEditComponent implements OnInit {
   progress: number = 0;
   message: string = "";
   formData: FormData | undefined;
-
-  constructor(private userService: UserService, private authService: AuthService, private route: ActivatedRoute, private artistService:ArtistService) {
-  }
+  constructor(private userService: UserService, private authService: AuthService, private route: ActivatedRoute, private artistService: ArtistService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-
       //daca id-ul este undefined, se ia userul logat
       if (this.id != undefined && this.id != null) {
         this.userService.GetByStringId(this.id).subscribe(resp => {
           this.user = resp;
-          
         })
       }
       else {
@@ -39,13 +35,8 @@ export class UserEditComponent implements OnInit {
           console.log(this.user)
         })
           .catch(error => console.log(error));
-
       }
-
-    }
-
-    )
-
+    })
   }
 
   uploadFile = (files: any) => {
@@ -55,56 +46,50 @@ export class UserEditComponent implements OnInit {
     let fileToUpload = <File>files[0];
     this.formData = new FormData();
     this.formData.append('file', fileToUpload, fileToUpload.name);
-    this.formData.append(this.user.id,'id')
+    this.formData.append(this.user.id, 'id')
   }
 
-  Update() {
+  Update() 
+  {
     if (this.formData != undefined) 
     {
-      this.userService.UploadImage(this.formData,this.user.id)
+      this.userService.UploadImage(this.formData, this.user.id)
         .subscribe({
-          next: (event:any) => {
-            if (event.type === HttpEventType.UploadProgress && event.total != undefined) {
-              this.progress = Math.round(100 * event.loaded / event.total);
-            }
-            else if (event.type === HttpEventType.Response) {
-              this.message = 'Upload success.';
-              var response = {dbPath: ''};
+          next: (event: any) => {
+            if (event.type === HttpEventType.Response) {
+              var response = { dbPath: '' };
               response = event.body
-              this.user.imagePath ="https://localhost:7255/" + response.dbPath;
-              
+              this.user.imagePath = "https://localhost:7255/" + response.dbPath;
+
               //Update artist
-              this.artistService.getArtistOfUser(this.user.id).pipe(
-                catchError(() => {
-                  return EMPTY;
-                })
-              )
-                .subscribe({
-                  next: (resp) => {
-                    resp.imagePath = this.user.imagePath;
-                    console.log(resp);
-                    this.artistService.Update(resp).subscribe();
-                  },
-                  error: (error) => {
-                  }
-                })
+              this.UpdateArtist();
               //User
-              this.user.likedSongs = []
-              this.user.messages = []
-              this.userService.Update(this.user).subscribe(Response => {
-                this.user = Response
-              })
+              this.UpdateUser();
             }
           },
           error: (err: HttpErrorResponse) => console.log(err)
         });
     }
-
-    else
+    else 
     {
-      this.userService.Update(this.user).subscribe(Response => {
-        this.user = Response
-      })
+      this.UpdateUser();
     }
   }
+  UpdateArtist() {
+    this.artistService.getArtistOfUser(this.user.id).subscribe(resp =>{
+      if(resp !=null)
+      {
+        resp.imagePath = this.user.imagePath;
+        this.artistService.Update(resp).subscribe();
+      }
+    })
+  }
+  UpdateUser() {
+    this.user.likedSongs = []
+    this.user.messages = []
+    this.userService.Update(this.user).subscribe(Response => {
+      this.user = Response
+    })
+  }
 }
+

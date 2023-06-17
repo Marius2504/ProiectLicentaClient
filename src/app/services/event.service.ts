@@ -14,4 +14,12 @@ export class EventService extends GenericService<Event> {
   getAllEventsOfArtist(id:number): Observable<Event[]> {
     return this.http.get<Event[]>(this.url+ '/artist/' + id)
   }
+  AddArtist(eventId:number,artistId:number):Observable<Event>
+  {
+    return this.http.post<Event>(this.url+ '/artist/add/' + eventId + '/' + artistId,{})
+  }
+  RemoveArtist(eventId:number,artistId:number):Observable<Event>
+  {
+    return this.http.post<Event>(this.url+ '/artist/remove/' + eventId + '/' + artistId,{})
+  }
 }

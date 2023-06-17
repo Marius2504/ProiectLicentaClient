@@ -1,8 +1,35 @@
 $headerheight : 60px;
-$songHeight: 90px;
+$songHeight: 80px;
 body{
-  min-height: calc(100vh - $headerheight - $songHeight);
+  min-height: calc(100vh - $songHeight);
+  height: 100%;
+  background-color: #16213b;
+}
+.title{
+  color: #fff;
+  font-size: 35px;
+  font-weight: 500;
+}
+.container1{
+  height: 55px;
+  width: 55px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15%;
+  background-color: #fff;
+}
+.image{
+  position: absolute;
+  height: 100%;
+  width: auto;
+  top: 0px;
+  //left: -15px;
+}
+.table{
+  color: #fff;
+  font-size: 25px;
+  font-weight: 500;
 }
 .userItem{
-    cursor: pointer;
+  cursor: pointer;
 }

@@ -1,23 +1,22 @@
 $headerheight : 60px;
-$songHeight: 90px;
+$songHeight: 80px;
 body{
-  min-height: calc(100vh - $headerheight - $songHeight);
+  min-height: calc(100vh - $songHeight);
+  background-color: #16213b;
 }
-.main{
-    flex: 1;
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    min-height: 700px;
-    background-color: black;
+.wrapper{
+    padding: 20px;
+}
+.btn{
+    margin-bottom: 20px;
 }
 .rowElements{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .title{
-    font-size: larger;
+    font-size: 30px;
     color: beige;
     font-weight: 600;
-    padding-left: 30px;
 }

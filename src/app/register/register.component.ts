@@ -20,7 +20,7 @@ export class RegisterComponent {
   confirmPassword: string="";
   terms:boolean = false;
   displayErrorMatch:boolean=false;
-  termsError:boolean=false;
+  termsError:boolean=true;
   passwordError:boolean=false;
   emailError:boolean=false;
   RegisterFromComponent()

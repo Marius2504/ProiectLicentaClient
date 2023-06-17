@@ -33,6 +33,8 @@ import { MySongsComponent } from './entities/songs/my-songs/my-songs.component';
 import { AllgenreComponent } from './entities/genres/allgenre/allgenre.component';
 import { GenreCreateComponent } from './entities/genres/genre-create/genre-create.component';
 import { MyAlbumsComponent } from './entities/albums/my-albums/my-albums.component';
+import { TrendingComponent } from './entities/songs/trending/trending.component';
+import { GenreEditComponent } from './entities/genres/genre-edit/genre-edit.component';
 
 
 
@@ -51,8 +53,7 @@ const appRoutes:Routes = [
     {path:'ticket/:id', canActivate:[AuthGuard],component:TicketDetailsComponent},
     {path:'ticket/:id/edit',canActivate:[AdminGuard],component:TicketEditComponent},
     
-  
-    {path:'myplaylists', canActivate:[AuthGuard],component:MyplaylistsComponent},
+    {path:'likedSongs', canActivate:[AuthGuard],component:MyplaylistsComponent},
     {path:'playlist/create', canActivate:[AuthGuard],component:PlaylistCreateComponent},
     {path:'playlist/:id',component:PlaylistDetailsComponent},
     {path:'playlist/:id/edit', canActivate:[AuthGuard],component:PlaylistEditComponent},
@@ -61,14 +62,15 @@ const appRoutes:Routes = [
     {path:'artist/:id',component:ArtistDetailsComponent},
     {path:'artist/:id/edit', canActivate:[AdminGuard],component:ArtistEditComponent},
     
-    {path:'mySongs',canActivate:[ArtistGuard],component:MySongsComponent},
+    {path:'trending',component:TrendingComponent,pathMatch: 'full'},
+    {path:'mySongs',canActivate:[ArtistGuard],component:MySongsComponent,pathMatch: 'full'},
     {path:'song/create',canActivate:[ArtistGuard],component:SongCreateComponent},
     {path:'song/:id',component:SongDetailsComponent},
     {path:'song/:id/edit',canActivate:[ArtistGuard],component:SongEditComponent},
 
     {path:'allgenres', canActivate:[AuthGuard],component:AllgenreComponent},
     {path:'genre/create',component:GenreCreateComponent},
-    
+    {path:'genre/:id/edit', canActivate:[AdminGuard],component:GenreEditComponent},
   
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},

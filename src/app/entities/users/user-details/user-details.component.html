@@ -1,24 +1,35 @@
 <body>
+    <div *ngIf="user.id !=''"  class="container1">
+        <img *ngIf="user.imagePath;else other_content" src="{{user.imagePath}}" alt=""
+            class="img" (error)="replaceImage()">
+        <ng-template #other_content>
+            <img src="../../../../assets/user.png" alt="aa" class="img">
+        </ng-template>
+    </div>
     <div class="wrapper">
-        <div class="form-wrapper sign-in">
-            <form action="">
-                <h1>{{currentUser?.name}}</h1>
-                
-                <div class="input-group">
-                    <label>Email: {{currentUser?.email}}</label>
-                </div>
-                <div class="input-group">
-                    <label *ngIf="currentUser?.emailConfirmed">Confirmed email: Yes</label>
-                    <label class="profile" *ngIf="currentUser?.emailConfirmed;else other">{{currentUser?.emailConfirmed}}</label>
-                    <ng-template #other>
-                        <label>Confirmed email: No</label>
-                    </ng-template>
-                </div>
-                <div class="input-group">
-                    <label>phoneNumber: {{currentUser?.phoneNumber}}</label>
-                </div>
-                <button class="btn btn-primary" routerLink="edit">Edit</button>
-            </form>
+        <h1>{{user.name}}</h1>
+        <div class="section">
+            <label>Email: {{user.email}}</label>
+        </div>
+        <div class="section">
+            <label class="profile"
+                *ngIf="user.emailConfirmed;else other">Confirmed email: Yes</label>
+            <ng-template #other>
+                <label>Confirmed email: No</label>
+            </ng-template>
+        </div>
+        <div class="section">
+             phoneNumber: {{user.phoneNumber}}
         </div>
     </div>
 </body>
+<!--
+    public id:string = "";
+    public name:string = ""
+    public email:string = "";
+    public emailConfirmed:boolean = false;
+    public phoneNumber:string = "";
+    public imagePath:string =""
+    public likedSongs:Song[] = []
+    public messages:Message[] = []
+-->

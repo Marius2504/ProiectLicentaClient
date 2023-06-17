@@ -1,0 +1,6 @@
+$headerheight : 60px;
+$songHeight: 80px;
+body{
+  min-height: calc(100vh - $songHeight);
+  height: 100%;
+}

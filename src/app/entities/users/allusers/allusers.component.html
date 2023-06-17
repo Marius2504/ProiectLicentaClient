@@ -12,21 +12,26 @@
                             <th scope="col">Email</th>
                             <th scope="col">Email conf.</th>
                             <th scope="col">Phone</th>
+                            <th scope="col">Delete</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor="let user of users;index as i" class="userItem" routerLink="../user/{{user.id}}">
                             <th scope="row">{{i+1}}</th>
                             <td>
-                                <img *ngIf="user.imagePath;else other_content" src="{{user.imagePath}}" alt="" width="50px" height="50px">
-                                <ng-template #other_content>
-                                <img src="../../../../assets/user.png" alt="aa" width="50px" height="50px">
+                              <div *ngIf="user.id !=''" class="container1">
+                                <img class="image" *ngIf="user.imagePath;else other" src="{{user.imagePath}}" alt="">
+                                <ng-template #other>
+                                    <img class="image" src="../../../../assets/user.png" alt="aa">
                                 </ng-template>
+                            </div>
                             </td>
                             <td>{{user.name}}</td>
                             <td>{{user.email}}</td>
-                            <td>{{user.emailConfirmed}}</td>
+                            <td *ngIf="user.emailConfirmed">Yes</td>
+                            <td *ngIf="!user.emailConfirmed">No</td>
                             <td>{{user.phoneNumber}}</td>
+                            <td><i click-stop-propagation (click)="deleteItem(user.id)" class="bi bi-trash3-fill" style="color: brown;font-size: 25px;"></i></td>
                           </tr>
                         </tbody>
                       </table>

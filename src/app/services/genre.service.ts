@@ -13,7 +13,7 @@ export class GenreService extends GenericService<Genre> {
   GetWithSongs(id: number) {
     return this.http.get<Genre>(this.url + '/allsongs/' + id)
   }
-  UploadImage(formData:FormData,id:number)
+  UploadImage(formData:FormData)
   {
     return this.http.post("https://localhost:7255/api" +'/Upload/Genre', formData, {reportProgress: true, observe: 'events'})
   }

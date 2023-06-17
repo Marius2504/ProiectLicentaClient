@@ -33,4 +33,8 @@ export class UserService extends GenericService<User> {
   {
     return this.http.post<Song>(this.url+ '/removeLike/' + userId + '/' + song.id,{})
   }
+  deleteUser(id:string){
+    return this.http.delete<User>(this.url + '/delete/' + id)
+  }
+  
 }

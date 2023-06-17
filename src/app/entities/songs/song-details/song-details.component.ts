@@ -23,7 +23,7 @@ import { UserService } from 'src/app/services/user.service';
 export class SongDetailsComponent implements OnInit {
   @ViewChild('like') icon: ElementRef<HTMLElement> | undefined;
   @ViewChild('likeMessage') likeMessage: ElementRef<HTMLElement> | undefined;
-  currentSong:Song = new Song("",0,"","",0,0,0,0)
+  currentSong:Song = new Song()
   artist:Artist = new Artist()
   album:Album = new Album(0,"","","",0,0)
   genre:Genre = new Genre(0,"")

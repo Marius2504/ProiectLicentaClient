@@ -22,10 +22,8 @@ export class AlbumComponent implements OnInit{
   getArtist()
   {
     if(this.currentItem!=undefined){
-      
       this.artistService.Get(this.currentItem.artistId).subscribe(response=>{
         this.artist = response
-    
       })
     }
   }

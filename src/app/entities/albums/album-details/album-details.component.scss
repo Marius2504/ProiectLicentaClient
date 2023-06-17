@@ -1,21 +1,112 @@
 $headerheight : 60px;
-$songHeight: 90px;
+$songHeight: 80px;
 body{
-  min-height: calc(100vh - $headerheight - $songHeight);
+  min-height: calc(100vh - $headerheight);
+  height: 100%;
+  background-color: #16213b;
 }
-.songList{
-    width: 100%;
-    padding-left: 0px;
-    margin-left: 0px;
+.profileArea{
+    position: relative;
 }
-.songItem{
-    padding: 10px;
-    width: 100%;
-    background-color: aqua;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.titleU{
+  position:absolute;
+  color: #fff;
+  z-index: 12;
+}
+.titleAlbum{
+  top: 100px;
+  left: 100px;
+  font-size: 90px;
+  font-weight: 800; 
+}
+.titleArtist{
+  top: 200px;
+  left: 100px;
+  font-size: 40px;
+  font-weight: 800; 
+}
+
+.container1
+{
+  position: relative;
+  padding: 0%;
+  margin: 0%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 500px;
+  overflow: hidden;
+}
+.img{
+  position: absolute;
+  width: 1800px;
+  height: auto;
+  top: -250px;
+  left: 0px;
+}
+.container2
+{
+  position: absolute;
+  padding: 0%;
+  margin: 0%;
+  width: 200px;
+  top: 80%;
+  left: 130px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 50%;
 }
 .profile{
-    border-radius: 50%;
+  position: absolute;
+  width: 300px;
+  height: auto;
+  top: 0px;
+  left: 0px;
+}
+.wrapper{
+    color: #fff;
+    padding: 20px;
+    margin-top: 100px;
+}
+.titleDesc{
+  margin-left: 20px;
+}
+.description{
+  width: 90%;
+  margin-left: 30px;
+  font-size: large;
+}
+.title{
+  position: relative;
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+  margin-left: 50px;
+  margin-top: 10px;
+}
+.rowElements{
+  position: relative;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: auto;
+}
+.song{
+  transition: transform .5s ease-in-out;
+}
+.bi{
+  z-index: 10;
+  position: absolute;
+  top: 40%;
+  color: #36e2ec;
+  font-size: 30px;
+}
+.bi-arrow-left-circle-fill
+{
+  left: 10px;
+}
+.bi-arrow-right-circle-fill
+{
+  right: 10px;
 }

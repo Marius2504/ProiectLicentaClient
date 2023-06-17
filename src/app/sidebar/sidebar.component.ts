@@ -16,6 +16,7 @@ export class SidebarComponent implements OnInit {
   modeSwitch:boolean = false;
   isLogged:boolean = false;
   isAdmin:boolean = false;
+  isArtist:boolean = false;
   id:string = "";
   
 
@@ -25,7 +26,8 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe(Response =>{
       this.isLogged = Response; 
-      this.isAdmin = this.authService.isAdmin()
+      this.isAdmin = this.authService.isAdmin();
+      this.isArtist = this.authService.isArtist();
     })
   }
 

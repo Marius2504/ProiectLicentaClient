@@ -1,12 +1,41 @@
 $headerheight : 60px;
-$songHeight: 90px;
+$songHeight: 80px;
 body{
-  min-height: calc(100vh - $headerheight - $songHeight);
-  padding: 20px;
+  min-height: calc(100vh - $songHeight);
+  background-color: #16213b;
+  
 }
-.bi{
-    color: red;
+.wrapper{
+    color: #fff;
+    padding: 20px;
 }
+.section{
+    margin-bottom: 25px;
+}
+.container1
+{
+  position: relative;
+  padding: 0%;
+  margin: 0%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 500px;
+  overflow: hidden;
+}
+.img{
+  position: absolute;
+  width: 1800px;
+  height: auto;
+  top: -250px;
+  left: 0px;
+}
+.form-control{
+    color: #fff;
+    font-size: 15px;
+}
+
+
 .message{
     display: flex;
     flex-direction: row;
@@ -17,6 +46,18 @@ body{
 }
 .input-group{
     margin-top: 20px;
+}
+.addComment{
+    position: relative;
+    width: 50%;
+}
+#textarea{
+    background-color:#3e4764;
+    border: 1px solid #232838;
+}
+.btn{
+    position: absolute;
+    right: 0px;
 }
 .info{
     padding-left: 10px;

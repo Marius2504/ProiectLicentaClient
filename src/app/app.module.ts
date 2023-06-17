@@ -36,6 +36,10 @@ import { SongCreateComponent } from './entities/songs/song-create/song-create.co
 import { MyAlbumsComponent } from './entities/albums/my-albums/my-albums.component';
 import { AlbumCreateComponent } from './entities/albums/album-create/album-create.component';
 import { EventCreateComponent } from './entities/events/event-create/event-create.component';
+import { LocationComponent } from './entities/locations/location/location.component';
+import { LocationCreateComponent } from './entities/locations/location-create/location-create.component';
+import { TrendingComponent } from './entities/songs/trending/trending.component';
+import { MyplaylistsComponent } from './entities/playlists/myplaylists/myplaylists.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +71,11 @@ import { EventCreateComponent } from './entities/events/event-create/event-creat
     SongCreateComponent,
     MyAlbumsComponent,
     AlbumCreateComponent,
-    EventCreateComponent
+    EventCreateComponent,
+    LocationComponent,
+    LocationCreateComponent,
+    TrendingComponent,
+    MyplaylistsComponent
   ],
   imports: [
     BrowserModule,
