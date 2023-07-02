@@ -40,6 +40,7 @@ import { LocationComponent } from './entities/locations/location/location.compon
 import { LocationCreateComponent } from './entities/locations/location-create/location-create.component';
 import { TrendingComponent } from './entities/songs/trending/trending.component';
 import { MyplaylistsComponent } from './entities/playlists/myplaylists/myplaylists.component';
+import { NopageComponent } from './entities/nopage/nopage.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { MyplaylistsComponent } from './entities/playlists/myplaylists/myplaylis
     LocationComponent,
     LocationCreateComponent,
     TrendingComponent,
-    MyplaylistsComponent
+    MyplaylistsComponent,
+    NopageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { User } from 'src/app/models/User.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserDetailsComponent {
   user:User = new User()
   id:number = 0
-  constructor(private route:ActivatedRoute, private userService:UserService){}
+  constructor(private route:ActivatedRoute, private userService:UserService,private router:Router){}
 
   ngOnInit(): void {
     console.log(this.route.snapshot)
@@ -21,6 +21,8 @@ export class UserDetailsComponent {
       if(this.id !=undefined && this.id!=null){
         this.userService.Get(this.id).subscribe(response =>{
           this.user = response;
+        },error =>{
+          this.router.navigate(['/404'])
         })
       }
     })

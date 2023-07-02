@@ -21,8 +21,8 @@ export class SongBarComponent implements OnInit,AfterViewInit {
   @ViewChild('volVolume') volVolume: ElementRef<HTMLElement> | undefined;
   @ViewChild('dotVolume') dotVolume: ElementRef<HTMLElement> | undefined;
   artist: Artist | undefined
-  minutes: number = 0;
-  seconds: number = 0;
+  minutes: string ="";
+  seconds: string ="";
   isLogged: boolean = false;
   playStatus: string = 'play'
   audio = new Audio();
@@ -63,8 +63,17 @@ export class SongBarComponent implements OnInit,AfterViewInit {
 
         this.audio = resp;
         //calculate time
-        this.minutes = Math.floor(this.audio?.duration / 60);
-        this.seconds = Math.floor(this.audio?.duration) - this.minutes * 60;
+        this.minutes = Math.floor(this.audio?.duration / 60).toString();
+        var s = Math.floor(this.audio?.duration) - parseInt(this.minutes) * 60;
+        if(s<10)
+        {
+          this.seconds = "0" + s.toString();
+        }
+        else{
+          this.seconds = s.toString();
+        }
+          
+        
 
         //change volume based on audio recieved
         if (this.valVolume != undefined) {

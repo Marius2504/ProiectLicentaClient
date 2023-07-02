@@ -2,10 +2,12 @@ $headerheight : 60px;
 $songHeight: 80px;
 body{
   min-height: calc(100vh  - $songHeight);
-  height: 100%;
   background-color: #16213b;
   padding-left: 30px;
   padding-top: 20px;
+}
+.first{
+  min-height: 825px;
 }
 .title{
   position:absolute;
@@ -44,4 +46,10 @@ body{
   background-color: #6280c7;
   border: 1px solid #111a2e;;
   color: #fff;
+}
+@media screen and (max-width: 1000px) {
+  .title{
+      display: none;
+  }
+  
 }

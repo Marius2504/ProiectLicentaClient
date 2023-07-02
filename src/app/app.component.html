@@ -1,15 +1,14 @@
-
-<div style="display: flex; flex-direction: row; width: 100%;min-height: 100vh;">
+<div class="main" >
     <app-sidebar></app-sidebar>
-    <div style="display: flex;flex-direction: column; width: 100%;min-height: 100vh">
-        <app-header></app-header>
+    <div style="position: relative;width: 100%;">
         <router-outlet></router-outlet>
-        <app-song-bar style="position: sticky;bottom: 0px;"></app-song-bar>
+        <app-song-bar style="position: relative;bottom: 0px;"></app-song-bar>
     </div>
     
 </div>
 
 <!--
+    style="display: flex;flex-direction: column; width: 100%;min-height: 100%"
 <app-allusers (onUploadFinished)="uploadFinished($event)"></app-allusers>
 <img src="https://localhost:7255/Resources\\Images\\Picture1.png" alt="no photo">
 <img src="https://localhost:7255/Resources\\Images\\FF.png" alt="no photo">

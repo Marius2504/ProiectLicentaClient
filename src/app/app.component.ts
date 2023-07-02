@@ -23,7 +23,6 @@ export class AppComponent {
       imgPath: this.response.dbPath
     }
   }
-
 }
 class UserToCreate {
   name: string="";

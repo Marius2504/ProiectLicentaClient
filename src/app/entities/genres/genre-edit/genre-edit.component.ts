@@ -1,6 +1,6 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Genre } from 'src/app/models/Genre.model';
 import { GenreService } from 'src/app/services/genre.service';
 
@@ -14,7 +14,8 @@ export class GenreEditComponent {
   id: number = 0;
   formData: FormData | undefined;
   constructor(private genreService:GenreService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router:Router
     ){}
 
   ngOnInit(): void {
@@ -23,6 +24,8 @@ export class GenreEditComponent {
       if (this.id != undefined && this.id != null) {
         this.genreService.Get(this.id).subscribe(response => {
           this.genre = response;
+        },error =>{
+          this.router.navigate(['/404'])
         })
       }
     })

@@ -2,7 +2,6 @@ $headerheight : 60px;
 $songHeight: 80px;
 body{
   min-height: calc(100vh  - $songHeight);
-  height: 100%;
   background-color: #16213b;
 }
 .wrapper{
@@ -27,7 +26,8 @@ body{
 .form-group{
   color: #fff;
   font-size: 20px;
-  width: 800px;
+  width: 100%;
+  max-width: 500px;
 }
 .form-control{
   background-color: #6280c7;
@@ -37,7 +37,8 @@ body{
 .title{
   color: #fff;
   font-size: 20px;
-  width: 800px;
+  width: 100%;
+  max-width: 500px;
 }
 .rowElements{
   position: relative;

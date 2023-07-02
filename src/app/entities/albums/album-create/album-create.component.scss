@@ -2,8 +2,10 @@ $headerheight : 60px;
 $songHeight: 80px;
 body{
   min-height: calc(100vh - $songHeight);
-  height: 100%;
   padding: 20px;
+}
+form{
+  min-height: 825px;
 }
 .text{
     display: none;

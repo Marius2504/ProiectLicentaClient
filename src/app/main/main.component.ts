@@ -15,7 +15,9 @@ export class MainComponent implements OnInit {
   albums: Album[] = []
   artists: Artist[] = []
   songs: Song[] = []
-
+  slideCountSongs = 0;
+  slideCountAlbums = 0;
+  slideCountArtists = 0;
 
   constructor(private albumService: AlbumService,
     private artistService: ArtistService,
@@ -46,5 +48,40 @@ export class MainComponent implements OnInit {
 
   }
 
+  slideSongsLeft(): void {
+    this.slideCountSongs++;
+    this.slide("song",this.slideCountSongs)
+  }
+  slideSongsRight(): void {
+    this.slideCountSongs--;
+    this.slide("song",this.slideCountSongs)
+  }
+
+  slideAlbumsLeft(): void {
+    this.slideCountAlbums++;
+    this.slide("album",this.slideCountAlbums)
+  }
+  slideAlbumsRight(): void {
+    this.slideCountAlbums--;
+    this.slide("album",this.slideCountAlbums)
+  }
+  slideArtistsLeft(): void {
+    this.slideCountArtists++;
+    this.slide("artist",this.slideCountArtists)
+  }
+  slideArtistsRight(): void {
+    this.slideCountArtists--;
+    this.slide("artist",this.slideCountArtists)
+  }
+
+  slide(element:string,slideCount:number)
+  {
+    const elements = document.querySelectorAll('.'+element) as NodeListOf<HTMLElement>;
+    const translateX = -100 * slideCount;
+
+    elements.forEach((element) => {
+      element.style.transform = `translateX(${translateX}%)`;
+    });
+  }
 
 }

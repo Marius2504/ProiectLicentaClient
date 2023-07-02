@@ -32,23 +32,7 @@ export class SidebarComponent implements OnInit {
   }
 
   toggleClickEvent() {
-    this.sidebar?.nativeElement.classList.toggle("close");
-  }
-  searchBtnClickEvent() {
-    this.sidebar?.nativeElement.classList.remove("close");
-  }
-  modeSwitchClickEvent() {
-    this.modeSwitch = !this.modeSwitch;
-    this.body?.nativeElement.classList.toggle("dark");
-    if (this.body?.nativeElement.classList.contains("dark")) {
-      if (this.modeText != null) {
-        this.modeText.nativeElement.innerText = "Light mode";
-      }
-    } else {
-      if (this.modeText != null) {
-        this.modeText.nativeElement.innerText = "Dark mode";
-      }
-    }
+    this.sidebar?.nativeElement.classList.toggle("close1");
   }
   Logout()
   {

@@ -16,7 +16,9 @@ constructor(private genreService:GenreService){}
 
   deleteItem()
   {
+    if (confirm("Are you sure you want to delete this item?")) {
     this.genreService.Delete(this.genre.id).subscribe();
     this.show = false;
+    }
   }
 }

@@ -1,25 +1,26 @@
 <body>
-    <div *ngIf="user.id !=''"  class="container1">
-        <img *ngIf="user.imagePath;else other_content" src="{{user.imagePath}}" alt=""
-            class="img" (error)="replaceImage()">
-        <ng-template #other_content>
-            <img src="../../../../assets/user.png" alt="aa" class="img">
-        </ng-template>
-    </div>
-    <div class="wrapper">
-        <h1>{{user.name}}</h1>
-        <div class="section">
-            <label>Email: {{user.email}}</label>
-        </div>
-        <div class="section">
-            <label class="profile"
-                *ngIf="user.emailConfirmed;else other">Confirmed email: Yes</label>
-            <ng-template #other>
-                <label>Confirmed email: No</label>
+    <div style="min-height: 825px;">
+        <div *ngIf="user.id !=''" class="container1">
+            <img *ngIf="user.imagePath;else other_content" src="{{user.imagePath}}" alt="" class="img"
+                (error)="replaceImage()">
+            <ng-template #other_content>
+                <img src="../../../../assets/user.png" alt="aa" class="img">
             </ng-template>
         </div>
-        <div class="section">
-             phoneNumber: {{user.phoneNumber}}
+        <div class="wrapper">
+            <h1>{{user.name}}</h1>
+            <div class="section">
+                <label>Email: {{user.email}}</label>
+            </div>
+            <div class="section">
+                <label class="profile" *ngIf="user.emailConfirmed;else other">Confirmed email: Yes</label>
+                <ng-template #other>
+                    <label>Confirmed email: No</label>
+                </ng-template>
+            </div>
+            <div class="section">
+                phoneNumber: {{user.phoneNumber}}
+            </div>
         </div>
     </div>
 </body>

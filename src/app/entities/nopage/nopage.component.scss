@@ -1,0 +1,16 @@
+$headerheight : 60px;
+$songHeight: 80px;
+body{
+  min-height: calc(100vh - $songHeight);
+  background-color: #16213b;
+}
+.wrapper{
+    min-height: 825px;
+    padding-top: 10%;
+    color: beige;
+    text-align: center;
+}
+.code{
+    font-size: 120px;
+    font-weight: 800;
+}

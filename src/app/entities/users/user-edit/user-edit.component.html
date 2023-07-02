@@ -27,6 +27,10 @@
             <label for="exampleInputPassword1">Phone number</label>
             <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Phone number" required [(ngModel)]="user.phoneNumber" name="phoneNumber">
         </div>
+        <div *ngIf="artist.id != 0" class="form-group">
+            <label for="exampleInputDesc">Description</label>
+            <input type="text" class="form-control" id="exampleInputDESC" placeholder="Description" required [(ngModel)]="artist.description" name="description">
+        </div>
         <button type="submit" class="btn btn-primary" (click)="Update()">Update</button>
     </form>
 </body>

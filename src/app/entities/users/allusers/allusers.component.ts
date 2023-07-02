@@ -31,8 +31,9 @@ export class AllusersComponent {
   }
   deleteItem(id:string)
   {
+    if (confirm("Are you sure you want to delete this user?")) {
     this.userService.deleteUser(id).subscribe(resp =>{
       this.getUsers();
-    })
+    })}
   }
 }

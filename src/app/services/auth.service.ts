@@ -9,37 +9,42 @@ import jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService implements OnInit {
-  url:string = "https://localhost:7255/api/User"
-  defaultUser:User = new User("","","",false,"","")
-  loggedInUser :User | undefined
-  
+  url: string = "https://localhost:7255/api/User"
+  defaultUser: User = new User("", "", "", false, "", "")
+  loggedInUser: User | undefined
+
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
-  constructor(private http:HttpClient, private userService:UserService) {
+  constructor(private http: HttpClient, private userService: UserService) {
     const token = localStorage.getItem("key");
-    if(token != null)
-    {
+    if (token != null) {
       this._isLoggedIn$.next(true);
     }
-   }
+  }
 
-   ngOnInit(): void {
-    
-   }
-   getUser(): Promise<any> {
-    
+  ngOnInit(): void {
+
+  }
+  getUser(): Promise<any> {
+
     return new Promise((resolve, reject) => {
       if (this.loggedInUser == undefined) {
         const token = localStorage.getItem("key");
         if (token != null) {
           var decodedToken = this.getDecodedAccessToken(token);
-          var email = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
-          this.userService.GetByEmail(email).subscribe(resp => {
-            this.loggedInUser = resp;
-            this._isLoggedIn$.next(true);
-            resolve(this.loggedInUser);
-          });
+          var expirationTime = parseInt(decodedToken["exp"]);
+          if (expirationTime < (new Date().getTime() + 1) / 1000) {
+            this.logout();
+          }
+          else {
+            var email = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
+            this.userService.GetByEmail(email).subscribe(resp => {
+              this.loggedInUser = resp;
+              this._isLoggedIn$.next(true);
+              resolve(this.loggedInUser);
+            });
+          }
         } else {
           reject("No token found");
         }
@@ -48,85 +53,75 @@ export class AuthService implements OnInit {
       }
     });
   }
-  
-  reloadUser()
-  {
-    if(this.loggedInUser != undefined){
+
+  reloadUser() {
+    if (this.loggedInUser != undefined) {
       this.userService.GetByEmail(this.loggedInUser.email).subscribe(resp => {
         console.log(resp)
         this.loggedInUser = resp;
         this._isLoggedIn$.next(true);
       });
     }
-}
+  }
 
- 
 
-  login(entity:Login)
-  {
-    this.http.post<{key:string,token:string}>(this.url + '/login', entity).subscribe(response =>{
+
+  login(entity: Login) {
+    this.http.post<{ key: string, token: string }>(this.url + '/login', entity).subscribe(response => {
       this.storeToken(response)
-      
-      this.userService.GetByEmail(entity.email).subscribe(resp =>{
+
+      this.userService.GetByEmail(entity.email).subscribe(resp => {
         this._isLoggedIn$.next(true);
 
       })
 
-    },error =>{
-      
+    }, error => {
+
     })
   }
-  logout()
-  {
+  logout() {
     //this.isLoggedIn = false;
-    if(localStorage.getItem("key") !="")
+    if (localStorage.getItem("key") != "")
       localStorage.removeItem("key")
-    this.loggedInUser =undefined
+    this.loggedInUser = undefined
     this._isLoggedIn$.next(false);
 
   }
-  register(entity:Register)
-  {
-    this.http.post<{status:string,message:string}>(this.url + '/register', entity).subscribe(response =>{
-    },error =>{
-      
+  register(entity: Register) {
+    this.http.post<{ status: string, message: string }>(this.url + '/register', entity).subscribe(response => {
+    }, error => {
+
     })
   }
-  storeToken(data:{key:string,token:string})
-  {
-    if(localStorage.getItem("key") !="")
+  storeToken(data: { key: string, token: string }) {
+    if (localStorage.getItem("key") != "")
       localStorage.removeItem("key")
 
-    localStorage.setItem("key",data.token)
+    localStorage.setItem("key", data.token)
   }
 
-  isAuthenticated()
-  {
+  isAuthenticated() {
     return this._isLoggedIn$.value
   }
-  isAdmin()
-  {
+  isAdmin() {
     // acceseaza localstorage si citeste tokenul. Se verifica mai apoi daca este admin
     // O eroare ar putea sa fie daca user-ul are mai mutle roluri
-    var token= localStorage.getItem("key");
-    if(token !=null){
+    var token = localStorage.getItem("key");
+    if (token != null) {
       var decodedToken = this.getDecodedAccessToken(token);
       var roles = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
-      if(roles == "Admin")
-      {
+      if (roles == "Admin") {
         return true;
       }
     }
     return false;
   }
-  isArtist()
-  {
-    var token= localStorage.getItem("key");
-    if(token !=null){
+  isArtist() {
+    var token = localStorage.getItem("key");
+    if (token != null) {
       var decodedToken = this.getDecodedAccessToken(token);
       var roles = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
-      if(roles == "Artist" || roles == "Admin")
-      {
+      if (roles == "Artist" || roles == "Admin") {
         return true;
       }
     }
@@ -135,7 +130,7 @@ export class AuthService implements OnInit {
   getDecodedAccessToken(token: string): any {
     try {
       return jwt_decode(token);
-    } catch(Error) {
+    } catch (Error) {
       return null;
     }
   }

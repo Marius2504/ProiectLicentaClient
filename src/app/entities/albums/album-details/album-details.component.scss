@@ -1,8 +1,8 @@
 $headerheight : 60px;
-$songHeight: 80px;
+$songHeight: 90px;
+$sidebar-width:300px;
 body{
   min-height: calc(100vh - $headerheight);
-  height: 100%;
   background-color: #16213b;
 }
 .profileArea{
@@ -64,6 +64,18 @@ body{
   top: 0px;
   left: 0px;
 }
+.wrapperSlide{
+  position: relative;
+  display: inline-flex;
+  max-width: calc(100vw - $sidebar-width);
+}
+.rowElements {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: auto;
+}
 .wrapper{
     color: #fff;
     padding: 20px;
@@ -85,13 +97,7 @@ body{
   margin-left: 50px;
   margin-top: 10px;
 }
-.rowElements{
-  position: relative;
-  display: inline-flex;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  width: auto;
-}
+
 .song{
   transition: transform .5s ease-in-out;
 }
@@ -102,11 +108,19 @@ body{
   color: #36e2ec;
   font-size: 30px;
 }
-.bi-arrow-left-circle-fill
-{
+.bi-arrow-left-circle-fill {
   left: 10px;
 }
-.bi-arrow-right-circle-fill
-{
-  right: 10px;
+
+.bi-arrow-right-circle-fill {
+  right: -30px;
+}
+.wrapperSlide:hover .bi{
+  opacity: 1;
+}
+@media screen and (max-width: 800px) {
+  .wrapperSlide{
+      max-width: calc(100vw - 70px);
+  }
+  
 }

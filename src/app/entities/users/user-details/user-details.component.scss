@@ -2,7 +2,6 @@ $headerheight : 60px;
 $songHeight: 80px;
 body{
   min-height: calc(100vh  - $songHeight);
-  height: 100%;
   background-color: #16213b;
   padding-left: 30px;
   padding-top: 20px;
@@ -23,6 +22,7 @@ body{
   border-radius: 50%;
   overflow: hidden;
   border: 10px solid #fff;
+  
 }
 .img{
   height: 400px;

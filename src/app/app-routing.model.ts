@@ -35,6 +35,7 @@ import { GenreCreateComponent } from './entities/genres/genre-create/genre-creat
 import { MyAlbumsComponent } from './entities/albums/my-albums/my-albums.component';
 import { TrendingComponent } from './entities/songs/trending/trending.component';
 import { GenreEditComponent } from './entities/genres/genre-edit/genre-edit.component';
+import { NopageComponent } from './entities/nopage/nopage.component';
 
 
 
@@ -78,6 +79,9 @@ const appRoutes:Routes = [
     {path:'user/edit', canActivate:[AuthGuard],component:UserEditComponent},
     {path:'user/:id',component:UserDetailsComponent},
     {path:'user/:id/edit', canActivate:[AdminGuard],component:UserEditComponent},
+
+    {path: '404', component: NopageComponent},
+    {path: '**', redirectTo: '/404'}
     
   ]
 @NgModule({

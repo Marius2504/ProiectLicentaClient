@@ -34,6 +34,21 @@
   height: 8px;
   animation-delay: .8s;
 }
+
+.master_play .waveFix{
+  width: 25px;
+  height: 35px;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: flex-end;
+}
+.master_play  .waveFix .waveFix1{
+  width: 30px;
+  height: 8px;
+  margin-right: 3px;
+  background: #36e2ec;
+}
+
 @keyframes wave{
   0%{
     height: 10px;
@@ -47,8 +62,8 @@
 }
 
 .container1{
-  height: 55px;
-  width: 55px;
+  min-height: 55px;
+  min-width: 55px;
   overflow: hidden;
   position: relative;
   border-radius: 15%;
@@ -71,6 +86,10 @@
   font-size: 11px;
   color: #4c5262;
 }
+.icon{
+  display: flex;
+  flex-direction: row;
+}
 .master_play .icon{
   font-size: 20px;
   color: #fff;
@@ -81,9 +100,6 @@
   outline: none;
 }
 .master_play .icon .bi:nth-child(2){
-  border: 1px solid rgb(105,105,170,.1);
-  border-radius: 50%;
-  padding: 1px 3px 0px 6px;
   margin: 0px 5px;
   transition: .3s linear;
 }
@@ -198,5 +214,20 @@
   left: -5px;
   top: -5px;
   box-shadow: inset 0px 0px 3px #36e2ec;
+}
+@media screen and (max-width: 800px) {
+  .master_play{
+    padding: 0px;
+  }
+  .wave1{
+    display: none;
+  }
+  .waveFix1{
+    display: none;
+  }
+  .vol{
+    display: none;
+  }
+  
 }
   

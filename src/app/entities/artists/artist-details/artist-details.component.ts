@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Album } from 'src/app/models/Album.model';
 import { Artist } from 'src/app/models/Artist.model';
 import { Song } from 'src/app/models/Song.model';
@@ -35,7 +35,8 @@ export class ArtistDetailsComponent implements OnInit {
     private albumService: AlbumService,
     private eventService: EventService,
     private locationService: LocationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router:Router
   ) {
 
   }
@@ -55,6 +56,8 @@ export class ArtistDetailsComponent implements OnInit {
       this.getSongs();
       this.getAlbums();
       this.getEvents();
+    },error =>{
+      this.router.navigate(['/404'])
     })
   }
   getSongs() {

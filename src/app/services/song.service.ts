@@ -110,6 +110,7 @@ export class SongService extends GenericService<Song>{
   }
   UploadSong(formData:FormData)
   {
+    console.log("da")
     return this.http.post("https://localhost:7255/api" +'/Upload/songFile', formData, {reportProgress: true, observe: 'events'})
   }
   

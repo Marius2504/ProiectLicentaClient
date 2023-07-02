@@ -1,9 +1,14 @@
 
-<div class="master_play footer">
-    <div class="wave">
+<div  class="master_play footer" >
+    <div *ngIf="playStatus != 'play'" class="wave">
         <div class="wave1"></div>
         <div class="wave1"></div>
         <div class="wave1"></div>
+    </div>
+    <div *ngIf="playStatus == 'play'" class="waveFix">
+        <div class="waveFix1"></div>
+        <div class="waveFix1"></div>
+        <div class="waveFix1"></div>
     </div>
     <div *ngIf="songPlaying.id !=0" class="container1">
         <img class="image" *ngIf="songPlaying.imagePath;else other" src="{{songPlaying.imagePath}}" alt="">

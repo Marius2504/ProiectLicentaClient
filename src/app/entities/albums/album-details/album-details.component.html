@@ -28,13 +28,16 @@
             &nbsp;{{'\t' + album.description }}
         </div>
         <p class="title">Songs</p>
-        <div class="rowElements">
-            <i (click)="slideSongsLeft()" class="bi bi-arrow-left-circle-fill"></i>
-            <div *ngFor="let item of songs" class="song">
-                <app-song [currentItem]="item">
-                </app-song>
+        <div class="wrapperSlide">
+            <div class="rowElements">
+               <i (click)="slideSongsLeft()" class="bi bi-arrow-left-circle-fill"></i>
+   
+               <div *ngFor="let item of songs" class="song">
+                  <app-song [currentItem]="item">
+                  </app-song>
+               </div>
             </div>
             <i class="bi bi-arrow-right-circle-fill" (click)="slideSongsRight()"></i>
-        </div>
+         </div>
     </div>
 </body>

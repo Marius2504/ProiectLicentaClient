@@ -51,17 +51,17 @@ export class MyAlbumsComponent implements OnInit {
       console.log(resp)
     })
   }
-  getAlbums()
-  {
-    this.albumService.getAllAlbumsOfArtist(this.artist.id).subscribe(resp =>{
+  getAlbums() {
+    this.albumService.getAllAlbumsOfArtist(this.artist.id).subscribe(resp => {
       this.albums = resp;
     })
   }
-  deleteItem(id:number)
-  {
-    this.albumService.Delete(id).subscribe(resp =>{
-      this.getAlbums();
-      console.log(resp);
-    })
+  deleteItem(id: number) {
+    if (confirm("Are you sure you want to delete this item?")) {
+      this.albumService.Delete(id).subscribe(resp => {
+        this.getAlbums();
+        console.log(resp);
+      })
+    }
   }
 }

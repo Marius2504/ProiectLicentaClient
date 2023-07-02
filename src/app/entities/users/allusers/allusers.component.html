@@ -9,9 +9,9 @@
                             <th scope="col">#</th>
                             <th scope="col">Image</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Email conf.</th>
-                            <th scope="col">Phone</th>
+                            <th scope="col" class="emailTh">Email</th>
+                            <th scope="col" class="emailConf">Email conf.</th>
+                            <th scope="col" class="phone">Phone</th>
                             <th scope="col">Delete</th>
                           </tr>
                         </thead>
@@ -27,10 +27,10 @@
                             </div>
                             </td>
                             <td>{{user.name}}</td>
-                            <td>{{user.email}}</td>
-                            <td *ngIf="user.emailConfirmed">Yes</td>
-                            <td *ngIf="!user.emailConfirmed">No</td>
-                            <td>{{user.phoneNumber}}</td>
+                            <td class="emailTh">{{user.email}}</td>
+                            <td *ngIf="user.emailConfirmed" class="emailConf">Yes</td>
+                            <td *ngIf="!user.emailConfirmed" class="emailConf">No</td>
+                            <td class="phone">{{user.phoneNumber}}</td>
                             <td><i click-stop-propagation (click)="deleteItem(user.id)" class="bi bi-trash3-fill" style="color: brown;font-size: 25px;"></i></td>
                           </tr>
                         </tbody>

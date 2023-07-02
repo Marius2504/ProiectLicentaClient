@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Album } from 'src/app/models/Album.model';
 import { Artist } from 'src/app/models/Artist.model';
 import { Song } from 'src/app/models/Song.model';
@@ -24,7 +24,8 @@ export class AlbumDetailsComponent implements OnInit {
   constructor(private route:ActivatedRoute,
      private songService:SongService,
      private artistService:ArtistService,
-     private albumService:AlbumService
+     private albumService:AlbumService,
+     private router:Router
      ){
 
   }
@@ -35,7 +36,6 @@ export class AlbumDetailsComponent implements OnInit {
       
       if(this.id !=undefined && this.id!=0){
         this.getAlbum()
-        
       }
     })
   }
@@ -48,6 +48,8 @@ export class AlbumDetailsComponent implements OnInit {
         this.album=Response;
         this.getSongs();
         this.getArtist()
+      },error =>{
+        this.router.navigate(['/404'])
       })
   }
   getSongs()

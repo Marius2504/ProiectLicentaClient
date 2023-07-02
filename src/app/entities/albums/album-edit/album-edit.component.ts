@@ -1,6 +1,6 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Album } from 'src/app/models/Album.model';
 import { Artist } from 'src/app/models/Artist.model';
 import { Song } from 'src/app/models/Song.model';
@@ -23,6 +23,7 @@ export class AlbumEditComponent implements OnInit{
   constructor(private albumService:AlbumService,
     private route: ActivatedRoute,
     private songService:SongService,
+    private router:Router
     ){}
 
   ngOnInit(): void {
@@ -32,6 +33,8 @@ export class AlbumEditComponent implements OnInit{
         this.albumService.Get(this.id).subscribe(response => {
           this.album = response;
           this.getSongs();
+        },error =>{
+          this.router.navigate(['../404'])
         })
       }
     })

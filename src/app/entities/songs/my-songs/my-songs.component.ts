@@ -12,13 +12,13 @@ import { SongService } from 'src/app/services/song.service';
   templateUrl: './my-songs.component.html',
   styleUrls: ['./my-songs.component.scss']
 })
-export class MySongsComponent implements OnInit{
-  user:User =new User()
-  artist:Artist=new Artist()
-  songs:Song[] = []
-  constructor(private authService:AuthService,
-    private artistService:ArtistService,
-    private songService:SongService){}
+export class MySongsComponent implements OnInit {
+  user: User = new User()
+  artist: Artist = new Artist()
+  songs: Song[] = []
+  constructor(private authService: AuthService,
+    private artistService: ArtistService,
+    private songService: SongService) { }
 
   ngOnInit(): void {
     this.authService.getUser().then(result => {
@@ -47,22 +47,21 @@ export class MySongsComponent implements OnInit{
   getAllSongs() {
     this.songService.GetAll().subscribe(resp => {
       this.songs = resp;
-      console.log(resp)
+
     })
   }
-  getSongs()
-  {
-    this.songService.getAllSongsOfArtist(this.artist.id).subscribe(resp =>{
+  getSongs() {
+    this.songService.getAllSongsOfArtist(this.artist.id).subscribe(resp => {
       this.songs = resp;
     })
   }
-  deleteItem(id:number)
-  {
-    this.songService.Delete(id).subscribe(resp =>{
-      this.getSongs();
-      console.log(resp);
-    })
+  deleteItem(id: number) {
+    if (confirm("Are you sure you want to delete this item?")) {
+      this.songService.Delete(id).subscribe(resp => {
+        this.getSongs();
+      })
+    }
   }
-  
+
 
 }
