@@ -6,6 +6,7 @@ import { Register } from '../models/Register.model';
 import { User } from '../models/User.model';
 import { UserService } from './user.service';
 import jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService implements OnInit {
@@ -16,7 +17,7 @@ export class AuthService implements OnInit {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
-  constructor(private http: HttpClient, private userService: UserService) {
+  constructor(private http: HttpClient, private userService: UserService,private router:Router) {
     const token = localStorage.getItem("key");
     if (token != null) {
       this._isLoggedIn$.next(true);
@@ -68,6 +69,7 @@ export class AuthService implements OnInit {
 
   login(entity: Login) {
     this.http.post<{ key: string, token: string }>(this.url + '/login', entity).subscribe(response => {
+      this.router.navigate(['../']);
       this.storeToken(response)
 
       this.userService.GetByEmail(entity.email).subscribe(resp => {
@@ -76,7 +78,7 @@ export class AuthService implements OnInit {
       })
 
     }, error => {
-
+      alert("Invalid username or password")
     })
   }
   logout() {

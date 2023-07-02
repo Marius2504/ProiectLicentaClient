@@ -19,7 +19,6 @@ export class LoginComponent{
   LoginFromComponent()
   {
     this.authService.login(new Login(this.email,this.password))
-    this.router.navigate(['../']);
   }
 
 }
