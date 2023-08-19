@@ -34,6 +34,7 @@ export class SongDetailsComponent implements OnInit {
   messages: Message[] = [];
   messageUsers: User[] = []
   like: boolean = false;
+  isAuth:boolean =false
 
   constructor(private route: ActivatedRoute,
     private songService: SongService,
@@ -84,6 +85,7 @@ export class SongDetailsComponent implements OnInit {
 
         this.user = result;
         this.userId = result.id
+        this.isAuth = true;
       }
     })
   }
@@ -123,6 +125,7 @@ export class SongDetailsComponent implements OnInit {
       this.icon?.nativeElement.classList.remove('bi-heart-fill');
       this.icon?.nativeElement.classList.add("bi-heart");
     }
+    this.getSong()
   }
 
   addLikeToMessage(event: Event, message: Message) {

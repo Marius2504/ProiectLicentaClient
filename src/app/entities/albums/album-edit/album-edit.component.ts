@@ -13,18 +13,18 @@ import { SongService } from 'src/app/services/song.service';
   templateUrl: './album-edit.component.html',
   styleUrls: ['./album-edit.component.scss']
 })
-export class AlbumEditComponent implements OnInit{
-  album:Album = new Album()
-  songs :Song[] = []
+export class AlbumEditComponent implements OnInit {
+  album: Album = new Album()
+  songs: Song[] = []
   id: number = 0;
   slideCountSongs = 0;
   formData: FormData | undefined;
 
-  constructor(private albumService:AlbumService,
+  constructor(private albumService: AlbumService,
     private route: ActivatedRoute,
-    private songService:SongService,
-    private router:Router
-    ){}
+    private songService: SongService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -33,29 +33,27 @@ export class AlbumEditComponent implements OnInit{
         this.albumService.Get(this.id).subscribe(response => {
           this.album = response;
           this.getSongs();
-        },error =>{
+        }, error => {
           this.router.navigate(['../404'])
         })
       }
     })
   }
-  getSongs()
-  {
-    this.songService.getAllSongsOfAlbum(this.album.id).subscribe(resp =>{
+  getSongs() {
+    this.songService.getAllSongsOfAlbum(this.album.id).subscribe(resp => {
       this.songs = resp;
     })
   }
   slideSongsLeft(): void {
     this.slideCountSongs++;
-    this.slide("song",this.slideCountSongs)
+    this.slide("song", this.slideCountSongs)
   }
   slideSongsRight(): void {
     this.slideCountSongs--;
-    this.slide("song",this.slideCountSongs)
+    this.slide("song", this.slideCountSongs)
   }
-  slide(element:string,slideCount:number)
-  {
-    const elements = document.querySelectorAll('.'+element) as NodeListOf<HTMLElement>;
+  slide(element: string, slideCount: number) {
+    const elements = document.querySelectorAll('.' + element) as NodeListOf<HTMLElement>;
     const translateX = -100 * slideCount;
 
     elements.forEach((element) => {
@@ -72,17 +70,17 @@ export class AlbumEditComponent implements OnInit{
     this.formData.append('file', fileToUpload, fileToUpload.name);
     this.formData.append(this.album.id.toString(), 'id')
   }
-  deleteItem(id:number)
-  {
-    this.songService.Delete(id).subscribe(resp =>{
-    })
+  deleteItem(id: number) {
+    if (confirm("Are you sure you want to delete this item?")) {
+      this.songService.Delete(id).subscribe(resp => {
+      })
+    }
   }
   Update() {
     this.UploadImage();
   }
 
-  UploadImage()
-  {
+  UploadImage() {
     if (this.formData != undefined) {
       this.albumService.UploadImage(this.formData)
         .subscribe({
@@ -91,20 +89,19 @@ export class AlbumEditComponent implements OnInit{
               var response = { dbPath: '' };
               response = event.body
               this.album.imagePath = "https://localhost:7255/" + response.dbPath;
-              
+
               this.UpdateAlbum();
             }
-          }
+          },
+          error : (event:any) => alert("Wrong format image! Accepted formats are: jpg, jpeg, png and gif")
         });
     }
-    else
-    {
+    else {
       this.UpdateAlbum();
-    } 
+    }
   }
-  UpdateAlbum()
-  {
-    this.albumService.Update(this.album).subscribe(resp=>{
+  UpdateAlbum() {
+    this.albumService.Update(this.album).subscribe(resp => {
       this.album = resp;
     })
   }

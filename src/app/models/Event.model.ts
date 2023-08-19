@@ -1,7 +1,7 @@
 export class Event{
     public id:number=0
     public name:string=""
-    public dateTime:string =""
+    public dateTime= new Date(Date.now())
     public locationId:number =0;
     public tickedIds:number[] = []
     public artistIds:number[] = []
@@ -10,7 +10,8 @@ export class Event{
     {
         this.id=id;
         this.name=name;
-        this.dateTime=dateTime.getFullYear().toString() + " " + (dateTime.getMonth() + 1).toString()  + " " + dateTime.getDate();
+        this.dateTime=dateTime;
+       // this.dateTime=dateTime.getFullYear().toString() + " " + (dateTime.getMonth() + 1).toString()  + " " + dateTime.getDate();
         this.locationId=locationId;
         this.tickedIds=tickedIds;
         this.artistIds=artistIds;

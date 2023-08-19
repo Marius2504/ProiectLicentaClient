@@ -15,8 +15,16 @@ body{
     padding: 40px;
     transition: 3s;
 }
+.wrapper.wrong{
+    animation: none;
+    box-shadow: 0 0 400px rgb(255, 0, 0);
+}
 .wrapper:hover{
     animation: animate 3s linear infinite;
+}
+.wrapper.wrong:hover{
+    animation: none;
+    box-shadow: 0 0 400px rgb(255, 0, 0);
 }
 
 @keyframes animate{

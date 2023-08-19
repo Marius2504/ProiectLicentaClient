@@ -56,7 +56,8 @@ export class GenreEditComponent {
               
               this.UpdateGenre();
             }
-          }
+          },
+          error : (event:any) => alert("Wrong format image! Accepted formats are: jpg, jpeg, png and gif")
         });
     }
     else

@@ -81,12 +81,14 @@ export class EventCreateComponent implements OnInit {
       this.event.locationId = location.id
     }
     this.event.artistIds = [];
-    this.event
     this.eventService.Add(this.event).subscribe( resp =>{
       this.event = resp;
+      alert("event added")
       this.selectedArtists.forEach(element => {
         this.AddArtist(element.id)
       });
+    }, error =>{
+      alert("event wasn't added")
     });
     
   }
@@ -110,6 +112,9 @@ export class EventCreateComponent implements OnInit {
     this.locationService.Add(this.location).subscribe(resp=>{
       this.location = resp
       this.getAllLocations();
+      alert("location added")
+    }, error=>{
+      alert("location wasn't added")
     })
   }
 }

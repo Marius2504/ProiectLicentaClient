@@ -64,6 +64,7 @@ export class UserEditComponent implements OnInit {
             if (event.type === HttpEventType.Response) {
               var response = { dbPath: '' };
               response = event.body
+              console.log(response)
               this.user.imagePath = "https://localhost:7255/" + response.dbPath;
 
               //Update artist
@@ -72,7 +73,7 @@ export class UserEditComponent implements OnInit {
               this.UpdateUser();
             }
           },
-          error: (err: HttpErrorResponse) => console.log(err)
+          error : (event:any) => alert("Wrong format image! Accepted formats are: jpg, jpeg, png and gif")
         });
     }
     else {

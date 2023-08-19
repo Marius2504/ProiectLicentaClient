@@ -41,7 +41,7 @@
                     <textarea class="form-control" id="textarea" placeholder="Enter your comment..." rows="3"
                         [(ngModel)]="messageSend.text" name="textarea" ></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" (click)="sendMessage()" >Post </button>
+                <button type="submit" class="btn btn-primary" (click)="sendMessage()" [disabled]=!isAuth>Post </button>
             </div>
         </div>
         <div class="section">

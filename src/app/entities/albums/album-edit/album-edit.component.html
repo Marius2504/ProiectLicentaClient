@@ -42,7 +42,7 @@
             <div *ngFor="let item of songs" class="song">
                 <app-song [currentItem]="item">
                 </app-song>
-                <i click-stop-propagation (click)="deleteItem(album.id)" class="bi bi-trash3-fill" ></i>
+                <i click-stop-propagation (click)="deleteItem(item.id)" class="bi bi-trash3-fill" ></i>
             </div>
             <i class="bi bi-arrow-right-circle-fill" (click)="slideSongsRight()"></i>
         </div>

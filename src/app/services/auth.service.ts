@@ -13,9 +13,13 @@ export class AuthService implements OnInit {
   url: string = "https://localhost:7255/api/User"
   defaultUser: User = new User("", "", "", false, "", "")
   loggedInUser: User | undefined
+  
 
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this._isLoggedIn$.asObservable();
+
+  private _wrongPass$ = new BehaviorSubject<boolean>(false);
+  wrongPass$ = this._wrongPass$.asObservable();
 
   constructor(private http: HttpClient, private userService: UserService,private router:Router) {
     const token = localStorage.getItem("key");
@@ -58,7 +62,6 @@ export class AuthService implements OnInit {
   reloadUser() {
     if (this.loggedInUser != undefined) {
       this.userService.GetByEmail(this.loggedInUser.email).subscribe(resp => {
-        console.log(resp)
         this.loggedInUser = resp;
         this._isLoggedIn$.next(true);
       });
@@ -68,19 +71,24 @@ export class AuthService implements OnInit {
 
 
   login(entity: Login) {
+    
     this.http.post<{ key: string, token: string }>(this.url + '/login', entity).subscribe(response => {
       this.router.navigate(['../']);
       this.storeToken(response)
-
+      this._wrongPass$.next(false)
       this.userService.GetByEmail(entity.email).subscribe(resp => {
         this._isLoggedIn$.next(true);
 
       })
+      
 
     }, error => {
+      this._wrongPass$.next(true)
       alert("Invalid username or password")
     })
   }
+
+
   logout() {
     //this.isLoggedIn = false;
     if (localStorage.getItem("key") != "")
@@ -91,8 +99,9 @@ export class AuthService implements OnInit {
   }
   register(entity: Register) {
     this.http.post<{ status: string, message: string }>(this.url + '/register', entity).subscribe(response => {
+      this.router.navigate(['../login']);
     }, error => {
-
+      alert("user or email used")
     })
   }
   storeToken(data: { key: string, token: string }) {

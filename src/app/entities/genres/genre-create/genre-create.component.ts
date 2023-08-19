@@ -47,7 +47,7 @@ export class GenreCreateComponent implements OnInit{
             this.UpdateGenre();
           }
         },
-        error: (err: HttpErrorResponse) => console.log(err)
+        error : (event:any) => alert("Wrong format image! Accepted formats are: jpg, jpeg, png and gif")
       });
     })
   }

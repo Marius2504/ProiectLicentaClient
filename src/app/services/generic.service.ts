@@ -11,6 +11,7 @@ export abstract class GenericService<T> {
   constructor(protected http: HttpClient, protected urlPassed: string) { this.url = urlPassed }
 
   Add(entity: T) {
+    console.log(this.url)
     return this.http.post<T>(this.url, entity)
   }
   Get(id: number) {

@@ -116,7 +116,9 @@ export class SongEditComponent implements OnInit {
               
               this.UploadSong();
             }
-          }
+          },
+          error : (event:any) => alert("Wrong format image! Accepted formats are: jpg, jpeg, png and gif")
+          
         });
     }
     else
@@ -139,7 +141,8 @@ export class SongEditComponent implements OnInit {
               //Update song
               this.UpdateSong();
             }
-          }
+          },
+          error : (event:any) => alert("Wrong format song! Accepted formats are: .mp3, .wave")
         });
     }
     else{

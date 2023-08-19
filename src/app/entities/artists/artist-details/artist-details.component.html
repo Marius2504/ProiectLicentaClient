@@ -42,14 +42,17 @@
 
         <div class="wrapperSlide">
             <div class="rowElements">
-                <i class="bi bi-arrow-right-circle-fill" (click)="slideAlbumsRight()"></i>
+                <i (click)="slideAlbumsRight()" class="bi bi-arrow-left-circle-fill"></i>
+
                 <div *ngFor="let item of albums" class="album">
                     <app-album [currentItem]="item">
                     </app-album>
                 </div>
             </div>
-            <i class="bi bi-arrow-left-circle-fill" (click)="slideAlbumsLeft()"></i>
+            <i class="bi bi-arrow-right-circle-fill" (click)="slideAlbumsLeft()"></i>
         </div>
+
+        
 
 
         <p class="title">Events</p>
@@ -61,7 +64,7 @@
                     </div>
                     <div><strong>{{locations[i].name}}</strong>: {{locations[i].country}}, {{locations[i].city}},
                         {{locations[i].street}}</div>
-                    <div>{{event.dateTime.slice(0,10)}}</div>
+                    <div>{{event.dateTime}}</div>
                 </li>
             </ul>
         </div>

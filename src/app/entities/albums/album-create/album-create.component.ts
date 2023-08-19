@@ -56,11 +56,13 @@ export class AlbumCreateComponent implements OnInit {
   }
   save() {
     this.album.artistId = this.artist.id;
-    console.log(this.album);
     this.albumService.Add(this.album).subscribe(resp => {
       this.album =resp;
       console.log(this.album);
       this.UpdateWithImage();
+      alert("album added")
+    },error=>{
+      alert("album was not added");
     })
 
   }
