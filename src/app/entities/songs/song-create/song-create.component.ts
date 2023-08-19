@@ -148,7 +148,10 @@ export class SongCreateComponent implements OnInit {
       this.song.messages = []
       this.addSongImage();
       this.addSongFile();
+      alert("song added")
       
+    }, error=>{
+      alert("song was not added- error")
     })
   }
 
@@ -164,7 +167,6 @@ export class SongCreateComponent implements OnInit {
 
             //Update song
             this.songService.Update(this.song).subscribe(Response => {
-              console.log(Response);
               this.song = Response
             })
 
@@ -173,7 +175,7 @@ export class SongCreateComponent implements OnInit {
             }
           }
         },
-        error: (err: HttpErrorResponse) => console.log(err)
+        error: (err: HttpErrorResponse) => alert("Wrong format image! Accepted formats are: jpg, jpeg, png and gif")
       });
     }
   }
@@ -181,7 +183,7 @@ export class SongCreateComponent implements OnInit {
     if (this.formSongImage != undefined) {
       this.formSongImage.delete(this.song.id.toString());
       this.formSongImage.append(this.album.id.toString(), 'id')
-      this.songService.UploadImage(this.formSongImage).subscribe({
+      this.albumService.UploadImage(this.formSongImage).subscribe({
         next: (event: any) => {
           if (event.type === HttpEventType.Response) {
             var response = { dbPath: '' };
@@ -195,7 +197,7 @@ export class SongCreateComponent implements OnInit {
             })
           }
         },
-        error: (err: HttpErrorResponse) => console.log(err)
+        error: (err: HttpErrorResponse) => alert("Wrong format image! Accepted formats are: jpg, jpeg, png and gif")
       });
     }
   }
@@ -218,65 +220,14 @@ export class SongCreateComponent implements OnInit {
               })
             }
           },
-          error: (err: HttpErrorResponse) => console.log(err)
+          error : (event:any) => alert("Wrong format song! Accepted formats are: .mp3, .wave")
         });
-      }
+    }
+    
   }
+  
 
 }
 
 
 
-/*
-   this.songService.Add(this.song).subscribe(resp => {
-      this.song = resp;
-      
-        if (this.selectedAlbum == "Solo") 
-        {
-          this.formSongImage.append(this.album.id.toString(), 'id')
-          this.albumService.UploadImage(this.formSongImage).subscribe({
-            next: (event: any) => {
-              if (event.type === HttpEventType.Response) {
-                var response = { dbPath: '' };
-                response = event.body
-                this.album.imagePath = "https://localhost:7255/" + response.dbPath;
-
-                //Update genre
-                this.albumService.Update(this.album).subscribe(Response => {
-                  this.album = Response
-                })
-              }
-            },
-            error: (err: HttpErrorResponse) => console.log(err)
-          });
-        }
-      }
-    }
-/*
-    if(this.formSong !=null)
-    {
-      console.log("da")
-      this.formSong.append("3", 'id')
-      this.songService.Get(3).subscribe(resp =>{
-        this.song = resp;
-        if(this.formSong !=null)
-        this.songService.UploadSong(this.formSong).subscribe({
-          next: (event:any) => {
-            if (event.type === HttpEventType.Response) {
-              var response = {dbPath: ''};
-              response = event.body
-              this.song.serverLink ="https://localhost:7255/" + response.dbPath;
-              
-              //Update genre
-              this.songService.Update(this.song).subscribe(Response => {
-                this.song = Response
-              })
-            }
-          },
-          error: (err: HttpErrorResponse) => console.log(err)
-        });
-      })
-      
-    }
- // })
- */
