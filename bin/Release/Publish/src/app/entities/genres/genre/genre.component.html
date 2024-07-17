@@ -1,0 +1,14 @@
+<div *ngIf="show" class="wrapper" routerLink="../genre/{{genre.id}}/edit">
+    <div *ngIf="genre.id !=0" class="container1">
+        <img class="image" *ngIf="genre.imagePath;else other" src="{{genre.imagePath}}" alt="">
+        <ng-template #other>
+            <img class="image" src="../../../../assets/song.png" alt="aa">
+        </ng-template>
+    </div>
+    <div class="info">
+        <p>{{genre.name}}
+            <i click-stop-propagation (click)="deleteItem()" class="bi bi-trash3-fill"
+                style="color: brown;font-size: 25px;"></i>
+        </p>
+    </div>
+</div>

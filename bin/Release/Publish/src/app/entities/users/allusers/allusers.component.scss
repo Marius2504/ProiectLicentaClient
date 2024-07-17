@@ -1,0 +1,65 @@
+$headerheight : 60px;
+$songHeight: 80px;
+body{
+  min-height: calc(100vh - $songHeight);
+  background-color: #16213b;
+}
+.wrapper{
+  min-height: 825px;
+}
+.title{
+  color: #fff;
+  font-size: 35px;
+  font-weight: 500;
+}
+.input-group{
+  width: 100%;
+  
+}
+.container1{
+  height: 55px;
+  width: 55px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15%;
+  background-color: #fff;
+}
+.image{
+  position: absolute;
+  height: 25vw;
+  width: auto;
+  top: 0px;
+  //left: -15px;
+}
+.table{
+  color: #fff;
+  font-size: 100%;
+  font-weight: 500;
+}
+.userItem{
+  cursor: pointer;
+}
+@media screen and (max-width: 1100px) {
+  .emailTh{
+    display: none;
+  }
+}
+@media screen and (max-width: 800px) {
+  .emailConf{
+    display: none;
+  }
+  .phone{
+    display: none;
+  }
+  .table{
+    display: table;
+    flex-direction: column;
+    min-width: 100%;
+
+  }
+  .container1{
+    margin: 0px;
+    padding: 0px;
+
+  }
+}

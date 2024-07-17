@@ -1,0 +1,21 @@
+<body>
+    <div class="wrapper" #wrapper>
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <h2 >Login</h2>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="email" name="email" autocomplete="off">
+                    <label>Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" required [(ngModel)]="password" name="password" autocomplete="off">
+                    <label>Password</label>
+                </div>
+                <button type="submit" (click)="LoginFromComponent()">Login</button>
+                <div class="singUp-link">
+                    <p>Don't have an account? <a routerLink="/register"  class="signUpBtn-link">Sign up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

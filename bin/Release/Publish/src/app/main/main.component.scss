@@ -1,0 +1,64 @@
+$headerheight : 60px;
+$songHeight: 90px;
+$sidebar-width:300px;
+
+.main {
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    min-height: calc(100vh - $headerheight);
+    width: 100%;
+    background-color: #16213b;
+}
+
+.rowElements {
+    position: relative;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    width: auto;
+}
+
+.song,
+.album,
+.artist {
+    transition: transform .5s ease-in-out;
+}
+.wrapperSlide{
+    position: relative;
+    display: inline-flex;
+    max-width: calc(100vw - $sidebar-width);
+}
+.title {
+    font-size: larger;
+    color: beige;
+    font-weight: 600;
+    padding-left: 30px;
+}
+.bi {
+    z-index: 10;
+    position: absolute;
+    top: 40%;
+    color: #36e2ec;
+    font-size: 30px;
+    opacity: 0;
+    transition: .5s ease-in-out;
+}
+
+.bi-arrow-left-circle-fill {
+    left: 10px;
+}
+
+.bi-arrow-right-circle-fill {
+    right: -30px;
+}
+.wrapperSlide:hover .bi{
+    opacity: 1;
+}
+@media screen and (max-width: 800px) {
+    .wrapperSlide{
+        max-width: calc(100vw - 50px);
+    }
+    
+}

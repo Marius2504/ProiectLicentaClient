@@ -14,6 +14,7 @@ import { SongService } from 'src/app/services/song.service';
   styleUrls: ['./album-edit.component.scss']
 })
 export class AlbumEditComponent implements OnInit {
+  defaultUrl: string = "http://dumitrescu.online/api/"
   album: Album = new Album()
   songs: Song[] = []
   id: number = 0;
@@ -88,7 +89,7 @@ export class AlbumEditComponent implements OnInit {
             if (event.type === HttpEventType.Response) {
               var response = { dbPath: '' };
               response = event.body
-              this.album.imagePath = "https://localhost:7255/" + response.dbPath;
+              this.album.imagePath = this.defaultUrl + response.dbPath;
 
               this.UpdateAlbum();
             }

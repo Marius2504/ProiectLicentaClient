@@ -10,6 +10,7 @@ import { GenreService } from 'src/app/services/genre.service';
   styleUrls: ['./genre-edit.component.scss']
 })
 export class GenreEditComponent {
+  defaultUrl: string = "http://dumitrescu.online/api/"
   genre:Genre = new Genre()
   id: number = 0;
   formData: FormData | undefined;
@@ -52,7 +53,7 @@ export class GenreEditComponent {
             if (event.type === HttpEventType.Response) {
               var response = { dbPath: '' };
               response = event.body
-              this.genre.imagePath = "https://localhost:7255/" + response.dbPath;
+              this.genre.imagePath = this.defaultUrl + response.dbPath;
               
               this.UpdateGenre();
             }

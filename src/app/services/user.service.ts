@@ -9,32 +9,32 @@ import { GenericService } from './generic.service';
 })
 export class UserService extends GenericService<User> {
 
-  constructor(http:HttpClient) { super(http,'https://localhost:7255/api/User') }
+  constructor(http:HttpClient) { super(http,'User') }
 
   GetByEmail(email:string){
-    return this.http.get<User>(this.url + '/email/' + email)
+    return this.http.get<User>(this.defaultUrl +this.url + '/email/' + email)
   }
   GetByStringId(id: string) {
-    return this.http.get<User>(this.url + '/' + id) 
+    return this.http.get<User>(this.defaultUrl +this.url + '/' + id) 
   }
   GetAllUsers(){
-    return this.http.get<User[]>(this.url + '/all')
+    return this.http.get<User[]>(this.defaultUrl +this.url + '/all')
   }
   UploadImage(formData:FormData,userId:string)
   {
-    return this.http.post("https://localhost:7255/api" +'/Upload/Profile', formData, {reportProgress: true, observe: 'events'})
+    return this.http.post(this.defaultUrl +'Upload/Profile', formData, {reportProgress: true, observe: 'events'})
   }
   
   addLike(song:Song,userId:string)
   {
-    return this.http.post<Song>(this.url+ '/addLike/' + userId + '/' + song.id,{})
+    return this.http.post<Song>(this.defaultUrl +this.url+ '/addLike/' + userId + '/' + song.id,{})
   }
   removeLike(song:Song,userId:string)
   {
-    return this.http.post<Song>(this.url+ '/removeLike/' + userId + '/' + song.id,{})
+    return this.http.post<Song>(this.defaultUrl +this.url+ '/removeLike/' + userId + '/' + song.id,{})
   }
   deleteUser(id:string){
-    return this.http.delete<User>(this.url + '/delete/' + id)
+    return this.http.delete<User>(this.defaultUrl +this.url + '/delete/' + id)
   }
   
 }

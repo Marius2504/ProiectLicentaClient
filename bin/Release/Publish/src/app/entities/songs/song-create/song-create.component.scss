@@ -1,0 +1,16 @@
+$headerheight : 60px;
+$songHeight: 80px;
+body{
+  min-height: calc(100vh - $songHeight);
+  padding: 20px;
+}
+form{
+  min-height: 825px;
+}
+.text{
+    display: none;
+}
+.form-group
+{
+  max-width: 450px;
+}

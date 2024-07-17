@@ -1,0 +1,233 @@
+.master_play  {
+  position: sticky;
+  bottom: 0px;
+  width: 100%;
+  z-index: 20;
+  height: 80px;
+  background-color: #07090e;
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;
+  transition: .3s linear;
+}
+.master_play .wave{
+  width: 25px;
+  height: 35px;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.master_play  .wave .wave1{
+  width: 30px;
+  height: 10px;
+  margin-right: 3px;
+
+  background: #36e2ec;
+  animation: wave 1s linear infinite;
+}
+.master_play  .wave .wave1:nth-child(2){
+  height: 13px;
+  animation-delay: .4s;
+}
+.master_play  .wave .wave1:nth-child(3){
+  height: 8px;
+  animation-delay: .8s;
+}
+
+.master_play .waveFix{
+  width: 25px;
+  height: 35px;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: flex-end;
+}
+.master_play  .waveFix .waveFix1{
+  width: 30px;
+  height: 8px;
+  margin-right: 3px;
+  background: #36e2ec;
+}
+
+@keyframes wave{
+  0%{
+    height: 10px;
+  }
+  50%{
+    height: 25px;
+  }
+  100%{
+    height: 10px;
+  }
+}
+
+.container1{
+  min-height: 55px;
+  min-width: 55px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15%;
+}
+.image{
+  position: absolute;
+  height: 100%;
+  width: auto;
+  top: 0px;
+  //left: -15px;
+}
+.master_play  h5{
+  margin-right: 10%;
+  font-size: 13px;
+  margin-left: 15px;
+  color: #fff;
+  line-height: 17px;
+}
+.master_play   h5 .subtitle{
+  font-size: 11px;
+  color: #4c5262;
+}
+.icon{
+  display: flex;
+  flex-direction: row;
+}
+.master_play .icon{
+  font-size: 20px;
+  color: #fff;
+  margin: 0px 1vw 0px -10px;
+}
+.master_play .icon .bi{
+  cursor: pointer;
+  outline: none;
+}
+.master_play .icon .bi:nth-child(2){
+  margin: 0px 5px;
+  transition: .3s linear;
+}
+.master_play span{
+  color: #fff;
+  width: 32px;
+  font-size: 11px;
+  font-weight: 400;
+}
+.master_play span #currentStart{
+  margin:0px 0px 0px 20px;
+}
+
+.master_play .bar{
+  position: relative;
+  width: 35%;
+  height: 2px;
+  background: rgb(105,105,180,.1);
+  margin: 0px 15px 0px 10px;
+}
+.master_play .bar .bar2{
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #36e2ec;
+  height: 100%;
+  top: 0;
+}
+
+.master_play .bar .dot{
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #36e2ec;
+  border-radius: 50%;
+  left: 0%;
+  top: -1px;
+  
+}
+.master_play .bar .dot::before{
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border:1px solid #36e2ec;
+  border-radius: 50%;
+  left: -5px;
+  top: -5px;
+  box-shadow: inset 0px 0px 3px #36e2ec;
+}
+.master_play .bar input{
+  position: absolute;
+  width: 100%;
+  
+  top: -4px;
+  left: 0;
+  cursor: pointer;
+  z-index: 999;
+  transition: 3s linear;
+  opacity: 0;
+}
+////
+.master_play .vol{
+  position: relative;
+  width: 100px;
+  height: 2px;
+  margin-left: 50px;
+  background: rgb(105,105,170,.1);
+}
+.master_play .vol .bi{
+  position: absolute;
+  color: #fff;
+  font-size: 25px;
+  top: -17px;
+  left: -30px;
+}
+.master_play .vol input{
+  position: absolute;
+  width: 100%;
+  top: -5px;
+  left: 0;
+  cursor: pointer;
+  z-index: 999;
+  transition: 3s linear;
+  opacity: 0;
+}
+.master_play .vol .vol_bar{
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #36e2ec;
+  height: 100%;
+  top: 0;
+}
+
+.master_play .vol .dot{
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #36e2ec;
+  border-radius: 50%;
+  left: 0%;
+  top: -1px;
+}
+.master_play .vol .dot::before{
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border:1px solid #36e2ec;
+  border-radius: 50%;
+  left: -5px;
+  top: -5px;
+  box-shadow: inset 0px 0px 3px #36e2ec;
+}
+@media screen and (max-width: 800px) {
+  .master_play{
+    padding: 0px;
+  }
+  .wave1{
+    display: none;
+  }
+  .waveFix1{
+    display: none;
+  }
+  .vol{
+    display: none;
+  }
+  
+}
+  

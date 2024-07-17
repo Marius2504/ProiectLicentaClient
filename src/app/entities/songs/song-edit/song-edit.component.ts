@@ -18,6 +18,7 @@ import { SongService } from 'src/app/services/song.service';
   styleUrls: ['./song-edit.component.scss']
 })
 export class SongEditComponent implements OnInit {
+  defaultUrl: string = "http://dumitrescu.online/api/"
   song: Song = new Song();
   artist = new Artist()
   albums: Album[] = []
@@ -112,7 +113,7 @@ export class SongEditComponent implements OnInit {
             if (event.type === HttpEventType.Response) {
               var response = { dbPath: '' };
               response = event.body
-              this.song.imagePath = "https://localhost:7255/" + response.dbPath;
+              this.song.imagePath = this.defaultUrl + response.dbPath;
               
               this.UploadSong();
             }
@@ -137,7 +138,7 @@ export class SongEditComponent implements OnInit {
               var response = { dbPath: '' };
               response = event.body
 
-              this.song.serverLink = "https://localhost:7255/" + response.dbPath;
+              this.song.serverLink = this.defaultUrl + response.dbPath;
               //Update song
               this.UpdateSong();
             }

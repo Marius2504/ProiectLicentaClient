@@ -22,7 +22,7 @@ export class SongService extends GenericService<Song>{
   public subscribe$ = this.subscribeSource.asObservable();
 
   constructor(http:HttpClient) {
-     super(http,'https://localhost:7255/api/Song') 
+     super(http,'Song') 
      const songId = localStorage.getItem("currentSong");
       if(songId != null)
       {
@@ -81,37 +81,37 @@ export class SongService extends GenericService<Song>{
     this.audioSource.value.volume = value;
   }
   getTrending(start:number,cantity:number): Observable<Song[]> {
-    return this.http.get<Song[]>(this.url+ '/trending/' + start +'/'+ cantity)
+    return this.http.get<Song[]>(this.defaultUrl +this.url+ '/trending/' + start +'/'+ cantity)
   }
 
   getAllSongsOfAlbum(id:number): Observable<Song[]> {
-    return this.http.get<Song[]>(this.url+ '/album/' + id)
+    return this.http.get<Song[]>(this.defaultUrl +this.url+ '/album/' + id)
   }
 
   getAllSongsOfArtist(id:number): Observable<Song[]> {
-    return this.http.get<Song[]>(this.url+ '/artist/' + id)
+    return this.http.get<Song[]>(this.defaultUrl +this.url+ '/artist/' + id)
   }
   getSongWithIncludes(id:number): Observable<Song> {
-    return this.http.get<Song>(this.url+ '/includes/' + id)
+    return this.http.get<Song>(this.defaultUrl +this.url+ '/includes/' + id)
   }
   addLike(song:Song,userId:string)
   {
-    return this.http.post<Song>(this.url+ '/addLike/' + userId + '/' + song.id,{})
+    return this.http.post<Song>(this.defaultUrl +this.url+ '/addLike/' + userId + '/' + song.id,{})
   }
   removeLike(song:Song,userId:string)
   {
-    return this.http.post<Song>(this.url+ '/removeLike/' + userId + '/' + song.id,{})
+    return this.http.post<Song>(this.defaultUrl +this.url+ '/removeLike/' + userId + '/' + song.id,{})
   }
   
 
   UploadImage(formData:FormData)
   {
-    return this.http.post("https://localhost:7255/api" +'/Upload/Song', formData, {reportProgress: true, observe: 'events'})
+    return this.http.post(this.defaultUrl +'Upload/Song', formData, {reportProgress: true, observe: 'events'})
   }
   UploadSong(formData:FormData)
   {
     console.log("da")
-    return this.http.post("https://localhost:7255/api" +'/Upload/songFile', formData, {reportProgress: true, observe: 'events'})
+    return this.http.post(this.defaultUrl +'Upload/songFile', formData, {reportProgress: true, observe: 'events'})
   }
   
   

@@ -1,0 +1,112 @@
+<head>
+  <!-- Box icons for CSS-->>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<!--
+<li class="search-box" #searchBox (click)="searchBtnClickEvent()">
+          <i class='bx bx-search icon'></i>
+          <input type="text" placeholder="Search...">
+        </li>
+-->
+
+
+<div #body class="body dark">
+  <nav #nav class="sidebar ">
+    <header>
+      <div class="text logo-text">
+        <a class="title big" routerLink="/">
+          <span>Remix</span>
+        </a>
+        <a class="title small" routerLink="/">
+          <span>R</span>
+        </a>
+      </div>
+      <i class='bx bx-chevron-right toggle' #toggle (click)="toggleClickEvent()"></i>
+    </header>
+    <div class="menu-bar">
+      <div class="menu">
+        <ul class="menu-links">
+          <li *ngIf="!isLogged" class="nav-link">
+            <a routerLink="/login">
+              <i class='bx bx-home-alt icon'></i>
+              <span class="text nav-text">Login</span>
+            </a>
+          </li>
+          <li *ngIf="!isLogged" class="nav-link">
+            <a routerLink="/register">
+              <i class='bx bx-bar-chart-alt-2 icon'></i>
+              <span class="text nav-text">Register</span>
+            </a>
+          </li>
+          <li *ngIf="isLogged" class="nav-link">
+            <a routerLink="/user/edit">
+              <i class='bx bx-home-alt icon'></i>
+              <span class="text nav-text">Profile</span>
+            </a>
+          </li>
+          <li *ngIf="isLogged" class="nav-link">
+            <a routerLink="/likedSongs">
+              <i class='bx bx-heart icon'></i>
+              <span class="text nav-text">Liked songs</span>
+            </a>
+          </li>
+          <li *ngIf="isArtist" class="nav-link">
+            <a routerLink="/mySongs">
+              <i class='bx bx-music icon'></i>
+              <span class="text nav-text">My songs</span>
+            </a>
+          </li>
+          <li *ngIf="isArtist" class="nav-link">
+            <a routerLink="/myAlbums">
+              <i class='bx bx-book icon'></i>
+              <span class="text nav-text">My albums</span>
+            </a>
+          </li>
+          <li *ngIf="isAdmin" class="nav-link">
+            <a routerLink="/allgenres">
+              <i class='bx bxl-deezer icon'></i>
+              <span class="text nav-text">Genres</span>
+            </a>
+          </li>
+          <li *ngIf="isAdmin" class="nav-link">
+            <a routerLink="/event/create">
+              <i class='bx bx-calendar-event icon'></i>
+              <span class="text nav-text">Events</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a routerLink="/trending">
+              <i class='bx bx-trending-up icon'></i>
+              <span class="text nav-text">Trending</span>
+            </a>
+          </li>
+          <li *ngIf="isAdmin" class="nav-link">
+            <a routerLink="/users">
+              <i class='bx bx-user icon'></i>
+              <span class="text nav-text">Users</span>
+            </a>
+          </li>
+          <li *ngIf="isLogged" class="nav-link">
+            <a routerLink="/login" (click)="Logout()">
+              <i class='bx bx-log-out icon'></i>
+              <span class="text nav-text">Logout</span>
+            </a>
+          </li>
+        </ul>
+
+        <!--
+        <li class="mode">
+          <div class="sun-moon">
+            <i class='bx bx-moon icon moon'></i>
+            <i class='bx bx-sun icon sun'></i>
+          </div>
+          <span class="mode-text text" #modeText>Dark mode</span>
+          <div class="toggle-switch" #toggleSwitch (click)="modeSwitchClickEvent()">
+            <span class="switch"></span>
+          </div>
+        </li>
+      -->
+      </div>
+    </div>
+  </nav>
+</div>

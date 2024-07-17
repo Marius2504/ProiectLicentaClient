@@ -1,0 +1,14 @@
+<div class="mainDiv" (click)="navigateToDetails()">
+    <div class="container1">
+        <img class="img" *ngIf="currentItem.imagePath;else other_content" src="{{currentItem.imagePath}}" alt=""
+            height="50px">
+        <ng-template #other_content>
+            <img class="img" src="../../../../assets/user.png" alt="aa">
+        </ng-template>
+    </div>
+    <div class="info">
+        <p>{{currentItem.name}}</p>
+        <p class="subinfo">Artist</p>
+    </div>
+</div>
+

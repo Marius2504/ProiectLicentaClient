@@ -1,0 +1,73 @@
+<body>
+    <div>
+        <div class="content">
+            <div class="info">
+                <h1 style="font-size: 40px;font-weight: 600;margin-left: 10px;">
+                    {{artist.name}}
+                    <!--<button *ngIf="adminOrArtist" class="btn btn-primary" 
+                        routerLink="edit">Edit</button>-->
+                </h1>
+                <div class="description" style="width: 100%;">
+                    <p>
+                        &nbsp;<i>{{'\t' + artist.description }}</i>
+                    </p>
+                </div>
+
+            </div>
+            <div class="container1">
+                <img class="img" *ngIf="artist.imagePath;else other_content" src="{{artist.imagePath}}" alt=""
+                    height="50px">
+                <ng-template #other_content>
+                    <img class="img" src="../../../../assets/user.png" alt="aa">
+                </ng-template>
+            </div>
+
+        </div>
+
+        <p class="title">Popular songs</p>
+
+        <div class="wrapperSlide">
+            <div class="rowElements">
+                <i (click)="slideSongsLeft()" class="bi bi-arrow-left-circle-fill"></i>
+
+                <div *ngFor="let item of songs" class="song">
+                    <app-song [currentItem]="item">
+                    </app-song>
+                </div>
+            </div>
+            <i class="bi bi-arrow-right-circle-fill" (click)="slideSongsRight()"></i>
+        </div>
+
+        <p class="title">Albums</p>
+
+        <div class="wrapperSlide">
+            <div class="rowElements">
+                <i (click)="slideAlbumsRight()" class="bi bi-arrow-left-circle-fill"></i>
+
+                <div *ngFor="let item of albums" class="album">
+                    <app-album [currentItem]="item">
+                    </app-album>
+                </div>
+            </div>
+            <i class="bi bi-arrow-right-circle-fill" (click)="slideAlbumsLeft()"></i>
+        </div>
+
+        
+
+
+        <p class="title">Events</p>
+        <div>
+            <ul class="eventList">
+                <li *ngFor="let event of events; let i = index" [attr.data-index]="i" class="eventItem">
+                    <div class="title">
+                        {{event.name}}
+                    </div>
+                    <div><strong>{{locations[i].name}}</strong>: {{locations[i].country}}, {{locations[i].city}},
+                        {{locations[i].street}}</div>
+                    <div>{{event.dateTime}}</div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</body>

@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent implements OnInit {
+  defaultUrl: string = "http://dumitrescu.online/api/"
   user: User = new User();
   artist = new Artist()
   id: string = "";
@@ -64,9 +65,9 @@ export class UserEditComponent implements OnInit {
             if (event.type === HttpEventType.Response) {
               var response = { dbPath: '' };
               response = event.body
-              console.log(response)
-              this.user.imagePath = "https://localhost:7255/" + response.dbPath;
-
+              var urlLength = this.defaultUrl.length
+              this.user.imagePath = this.defaultUrl.slice(0,urlLength-5) + '/'  + response.dbPath;
+              console.log(this.user.imagePath)
               //Update artist
               this.UpdateArtist();
               //User

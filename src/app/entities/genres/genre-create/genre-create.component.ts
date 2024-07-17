@@ -9,6 +9,7 @@ import { GenreService } from 'src/app/services/genre.service';
   styleUrls: ['./genre-create.component.scss']
 })
 export class GenreCreateComponent implements OnInit{
+  defaultUrl: string = "http://dumitrescu.online/api/"
   genre:Genre = new Genre()
   name:string = ""
   formData:FormData = new FormData()
@@ -41,7 +42,7 @@ export class GenreCreateComponent implements OnInit{
             var response = {dbPath: ''};
             console.log(event.body)
             response = event.body
-            this.genre.imagePath ="https://localhost:7255/" + response.dbPath;
+            this.genre.imagePath =this.defaultUrl + response.dbPath;
             
             //Update genre
             this.UpdateGenre();

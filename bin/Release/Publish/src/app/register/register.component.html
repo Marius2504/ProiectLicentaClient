@@ -1,0 +1,51 @@
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <h2>Sign Up</h2>
+                <div class="error-message" [hidden]="this.register.password==confirmPassword" name="displayError">
+                    <p>Confirm password not match</p>
+                </div>
+                <div class="error-message" [hidden]="!emailOrName" name="displayErrorName">
+                    <p>Email or name already used</p>
+                </div>
+                <div class="error-message" [hidden]="emailError" name="emailError">
+                    <p>Email in wrong format</p>
+                </div>
+                <div class="error-message" [hidden]="terms" name="termsError">
+                    <p>You have to accept terms & conditions</p>
+                </div>
+                <div class="error-message" [hidden]="passwordError" name="passwordError">
+                    <p>Password must be at least 6 characters long and contains: a special character and a digit </p>
+                </div>
+                <div class="input-group">
+                    <input type="text" required [(ngModel)]="register.username" name="username" autocomplete="off">
+                    <label>Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" required [(ngModel)]="register.email" name="email" autocomplete="off">
+                    <label>Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" required [(ngModel)]="register.password" name="password" autocomplete="off">
+                    <label>Password</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" required [(ngModel)]="confirmPassword" name="confirmPassword" autocomplete="off">
+                    <label>Confirm password</label>
+                </div>
+                <div class="remember">
+                    <label for=""><input type="checkbox" [(ngModel)]="register.isArtist" name="isArtist">Artist</label>
+                </div>
+                <div class="remember">
+                    <label for=""><input type="checkbox" [(ngModel)]="terms" name="terms">I agree to the term &
+                        conditions</label>
+                </div>
+                <button type="submit" (click)="RegisterFromComponent()">Sign Up</button>
+                <div class="singUp-link">
+                    <p>Already have an account? <a routerLink="/login"  class="signUpBtn-link">Sign in</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

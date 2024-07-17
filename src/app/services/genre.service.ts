@@ -8,13 +8,13 @@ import { GenericService } from './generic.service';
 })
 export class GenreService extends GenericService<Genre> {
 
-  constructor(http:HttpClient) { super(http,'https://localhost:7255/api/Genre') }
+  constructor(http:HttpClient) { super(http,'Genre') }
 
   GetWithSongs(id: number) {
-    return this.http.get<Genre>(this.url + '/allsongs/' + id)
+    return this.http.get<Genre>(this.defaultUrl +this.url + '/allsongs/' + id)
   }
   UploadImage(formData:FormData)
   {
-    return this.http.post("https://localhost:7255/api" +'/Upload/Genre', formData, {reportProgress: true, observe: 'events'})
+    return this.http.post(this.defaultUrl +'Upload/Genre', formData, {reportProgress: true, observe: 'events'})
   }
 }

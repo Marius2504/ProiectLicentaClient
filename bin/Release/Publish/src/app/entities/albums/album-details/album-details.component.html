@@ -1,0 +1,43 @@
+<body>
+    <div class="profileArea">
+        <div *ngIf="album.id !=0" class="container1">
+            <div class="titleU titleAlbum">
+                {{album.name}}
+            </div>
+            <div class="titleU titleArtist">
+                <a routerLink="../../artist/{{artist.id}}" style="color: #fff;"> {{artist.name}} </a>
+            </div>
+            <img *ngIf="album.imagePath;else other_content" src="{{album.imagePath}}" alt="" width="50px" height="50px"
+                class="img">
+            <ng-template #other_content>
+                <img src="../../../../assets/song.png" alt="aa" width="50px" height="50px" class="img">
+            </ng-template>
+        </div>
+
+        <div *ngIf="artist.id !=0" class="container2">
+            <img class="profile" *ngIf="artist.imagePath;else other" src="{{artist.imagePath}}" alt="" width="30px"
+                height="30px">
+            <ng-template #other>
+                <img class="profile" src="../../../../assets/user.png" alt="aa" width="30px" height="30px">
+            </ng-template>
+        </div>
+    </div>
+    <div class="wrapper">
+        <h1 class="titleDesc">Short description</h1>
+        <div class="description">
+            &nbsp;{{'\t' + album.description }}
+        </div>
+        <p class="title">Songs</p>
+        <div class="wrapperSlide">
+            <div class="rowElements">
+               <i (click)="slideSongsLeft()" class="bi bi-arrow-left-circle-fill"></i>
+   
+               <div *ngFor="let item of songs" class="song">
+                  <app-song [currentItem]="item">
+                  </app-song>
+               </div>
+            </div>
+            <i class="bi bi-arrow-right-circle-fill" (click)="slideSongsRight()"></i>
+         </div>
+    </div>
+</body>

@@ -1,0 +1,43 @@
+<div  class="main">
+   <div>
+      <p class="title">Artists:</p>
+      <div class="wrapperSlide">
+         <div class="rowElements">
+            <i (click)="slideArtistsLeft()" class="bi bi-arrow-left-circle-fill"></i>
+
+            <div *ngFor="let item of artists" class="artist">
+               <app-artist [currentItem]="item">
+               </app-artist>
+            </div>
+         </div>
+         <i class="bi bi-arrow-right-circle-fill" (click)="slideArtistsRight()"></i>
+      </div>
+
+      <p class="title">Albums</p>
+      <div class="wrapperSlide">
+         <div class="rowElements">
+            <i (click)="slideAlbumsLeft()" class="bi bi-arrow-left-circle-fill"></i>
+
+            <div *ngFor="let item of albums" class="album">
+               <app-album [currentItem]="item">
+               </app-album>
+            </div>
+         </div>
+         <i class="bi bi-arrow-right-circle-fill" (click)="slideAlbumsRight()"></i>
+      </div>
+
+
+      <p class="title">Songs</p>
+      <div class="wrapperSlide">
+         <div class="rowElements">
+            <i (click)="slideSongsLeft()" class="bi bi-arrow-left-circle-fill"></i>
+
+            <div *ngFor="let item of songs" class="song">
+               <app-song [currentItem]="item">
+               </app-song>
+            </div>
+         </div>
+         <i class="bi bi-arrow-right-circle-fill" (click)="slideSongsRight()"></i>
+      </div>
+   </div>
+</div>

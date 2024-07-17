@@ -19,6 +19,7 @@ import { SongService } from 'src/app/services/song.service';
   styleUrls: ['./song-create.component.scss']
 })
 export class SongCreateComponent implements OnInit {
+  defaultUrl: string = "http://dumitrescu.online/api/"
   song: Song = new Song()
   genres: Genre[] = [];
   albums: Album[] = [];
@@ -49,7 +50,7 @@ export class SongCreateComponent implements OnInit {
     this.artistService.getArtistOfUser(this.user.id).pipe(
       catchError(() => {
         this.getAllAlbums();
-        this.artist.id = 3;
+        this.artist.id = 9;
         return EMPTY;
       })
     )
@@ -163,7 +164,7 @@ export class SongCreateComponent implements OnInit {
           if (event.type === HttpEventType.Response) {
             var response = { dbPath: '' };
             response = event.body
-            this.song.imagePath = "https://localhost:7255/" + response.dbPath;
+            this.song.imagePath = this.defaultUrl + response.dbPath;
 
             //Update song
             this.songService.Update(this.song).subscribe(Response => {
@@ -188,7 +189,7 @@ export class SongCreateComponent implements OnInit {
           if (event.type === HttpEventType.Response) {
             var response = { dbPath: '' };
             response = event.body
-            this.album.imagePath = "https://localhost:7255/" + response.dbPath;
+            this.album.imagePath = this.defaultUrl + response.dbPath;
 
             //Update album
             this.albumService.Update(this.album).subscribe(Response => {
@@ -211,7 +212,7 @@ export class SongCreateComponent implements OnInit {
             if (event.type === HttpEventType.Response) {
               var response = {dbPath: ''};
               response = event.body
-              this.song.serverLink ="https://localhost:7255/" + response.dbPath;
+              this.song.serverLink =this.defaultUrl + response.dbPath;
               
               //Update genre
               this.songService.Update(this.song).subscribe(Response => {

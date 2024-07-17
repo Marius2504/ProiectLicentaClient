@@ -1,0 +1,25 @@
+$headerheight : 60px;
+$songHeight: 80px;
+body{
+  min-height: calc(100vh - $songHeight);
+}
+.wrapper{
+  min-height: 825px;
+}
+.albumItem{
+    cursor: pointer;
+}
+.btn{
+  margin-left: 20px;
+  font-weight: 600;
+}
+@media screen and (max-width: 600px) {
+  .yearR{
+      display: none;
+  }
+}
+@media screen and (max-width: 450px) {
+  .desc{
+      display: none;
+  }
+}

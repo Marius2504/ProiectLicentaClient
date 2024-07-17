@@ -1,0 +1,101 @@
+$headerheight : 60px;
+$songHeight: 80px;
+$sidebar-width:300px;
+body{
+  min-height: calc(100vh - $songHeight);
+  background-color: #16213b;
+}
+.description{
+  width: 90%;
+  font-size: large;
+}
+.info{
+  position: absolute;
+  top: 450px;
+  z-index: 20;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+}
+.btn{
+  display: inline-block;
+  background-color: #007bff;
+}
+.content{
+  width: 100%;
+  padding-bottom: 40px;
+}
+.container1
+{
+  position: relative;
+  padding: 0%;
+  margin: 0%;
+  width: 100%;
+  top: 0px;
+  left: 0;
+  height: 500px;
+  overflow: hidden;
+ 
+}
+.img{
+  position: absolute;
+  width: 200%;
+  max-width: 1800px;
+  height: auto;
+  top: -20vh;
+  left: -100px;
+}
+
+.title{
+  position: relative;
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.wrapperSlide{
+  position: relative;
+  display: inline-flex;
+  max-width: calc(100vw - $sidebar-width);
+}
+.rowElements{
+  position: relative;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: auto;
+}
+.song, .album{
+  transition: transform .5s ease-in-out;
+}
+.bi{
+  z-index: 10;
+  position: absolute;
+  top: 40%;
+  color: #36e2ec;
+  font-size: 30px;
+}
+.bi-arrow-left-circle-fill {
+  left: 10px;
+}
+
+.bi-arrow-right-circle-fill {
+  right: -30px;
+}
+.eventList{
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0px;
+}
+.wrapperSlide:hover .bi{
+  opacity: 1;
+}
+@media screen and (max-width: 800px) {
+  .wrapperSlide{
+      max-width: calc(100vw - 50px);
+  }
+  
+}

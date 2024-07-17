@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService implements OnInit {
-  url: string = "https://localhost:7255/api/User"
+  defaultUrl: string = "http://dumitrescu.online/api/"
+  url: string = this.defaultUrl +"User"
   defaultUser: User = new User("", "", "", false, "", "")
   loggedInUser: User | undefined
   
@@ -101,7 +102,12 @@ export class AuthService implements OnInit {
     this.http.post<{ status: string, message: string }>(this.url + '/register', entity).subscribe(response => {
       this.router.navigate(['../login']);
     }, error => {
-      alert("user or email used")
+      console.error('There was an error!', error); // Afișează eroarea completă în consola
+      if (error.error && error.error.message) {
+        alert(`Error: ${error.error.message}`); // Afișează mesajul de eroare specificat în răspuns
+      } else {
+        alert('An unexpected error occurred'); // Mesaj generic pentru alte erori
+      }
     })
   }
   storeToken(data: { key: string, token: string }) {

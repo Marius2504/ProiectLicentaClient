@@ -7,5 +7,5 @@ import { Location } from 'src/app/models/Location.model';
 })
 export class LocationService extends GenericService<Location> {
 
-  constructor(http:HttpClient) { super(http,'https://localhost:7255/api/Location') }
+  constructor(http:HttpClient) { super(http,'Location') }
 }

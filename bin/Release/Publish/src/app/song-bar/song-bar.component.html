@@ -1,0 +1,42 @@
+
+<div  class="master_play footer" >
+    <div *ngIf="playStatus != 'play'" class="wave">
+        <div class="wave1"></div>
+        <div class="wave1"></div>
+        <div class="wave1"></div>
+    </div>
+    <div *ngIf="playStatus == 'play'" class="waveFix">
+        <div class="waveFix1"></div>
+        <div class="waveFix1"></div>
+        <div class="waveFix1"></div>
+    </div>
+    <div *ngIf="songPlaying.id !=0" class="container1">
+        <img class="image" *ngIf="songPlaying.imagePath;else other" src="{{songPlaying.imagePath}}" alt="">
+        <ng-template #other>
+            <img class="image" src="../../../../assets/song.png" alt="aa">
+        </ng-template>
+    </div>
+    <h5>{{songPlaying.name}} <br>
+        <div class="subtitle">{{artist?.name}}</div>
+    </h5>
+    <div class="icon">
+        <i class="bi bi-skip-start-fill"></i>
+        <i #playButton (click)="play()" class="bi bi-play-fill"></i>
+        <i class="bi bi-skip-end-fill"></i>
+    </div>
+    <span id="currentStart">{{getMinutes()}}:{{getSeconds()}}</span>
+    <div class="bar">
+        <input #valCurrentTime (change)="changeCurrentTime()" type="range" min="0" value="{{progressBar}}" max="100">
+        <div #volCurrentTime class="bar2" id="bar2"></div>
+        <div #dotCurrentTime class="dot"></div>
+    </div>
+    <span id="currentEnd">{{minutes}}:{{seconds}}</span>
+    <div class="vol">
+        <i class="bi bi-volume-down-fill"></i>
+        <input #valVolume (change)="changeVolume()" type="range" id="vol" min="0" value="{{volume}}" max="100">
+        <div #volVolume class="vol_bar"></div>
+        <div #dotVolume class="dot" id="vol_dot"></div>
+    </div>
+</div>
+
+<!--*ngIf="song!=undefined && song.name"-->

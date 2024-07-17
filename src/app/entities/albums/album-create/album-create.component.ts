@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./album-create.component.scss']
 })
 export class AlbumCreateComponent implements OnInit {
+  defaultUrl: string = "http://dumitrescu.online/api/"
   album: Album = new Album()
   formAlbumImage: FormData | undefined
   user: User = new User();
@@ -75,7 +76,7 @@ export class AlbumCreateComponent implements OnInit {
           if (event.type === HttpEventType.Response) {
             var response = { dbPath: '' };
             response = event.body
-            this.album.imagePath = "https://localhost:7255/" + response.dbPath;
+            this.album.imagePath = this.defaultUrl + response.dbPath;
 
             //Update album
             this.albumService.Update(this.album).subscribe(Response => {

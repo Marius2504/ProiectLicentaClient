@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root'})
 export class AlbumService extends GenericService<Album>   {
-    constructor(http:HttpClient) { super(http,'https://localhost:7255/api/Album') }
+    constructor(http:HttpClient) { super(http,'Album') }
 
     getAllAlbumsOfArtist(id:number): Observable<Album[]> {
         console.log(this.url+ '/artist/' + id)
@@ -14,7 +14,7 @@ export class AlbumService extends GenericService<Album>   {
     }
     UploadImage(formData:FormData)
   {
-    return this.http.post("https://localhost:7255/api" +'/Upload/Album', formData, {reportProgress: true, observe: 'events'})
+    return this.http.post(this.defaultUrl +'/Upload/Album', formData, {reportProgress: true, observe: 'events'})
   }
     
 }

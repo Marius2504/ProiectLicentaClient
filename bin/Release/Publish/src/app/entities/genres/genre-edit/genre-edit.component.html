@@ -1,0 +1,22 @@
+<body>
+    <div class="wrapper">
+        <h2 class="title">Edit genre</h2>
+        <div class="container1">
+            <img class="img" *ngIf="genre.imagePath;else other_content" src="{{genre.imagePath}}" alt="" height="50px">
+            <ng-template #other_content>
+                <img class="img" src="../../../../assets/song.png" alt="aa">
+            </ng-template>
+        </div>
+        <div class="button">
+            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+            <button type="button" class="btn btn-success" (click)="file.click()">Change Image</button>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" class="form-control" required [(ngModel)]="genre.name" name="name"
+                placeholder="Enter name">
+        </div>
+        <button type="submit" class="btn btn-primary update" (click)="Update()">Update</button>
+    </div>
+</body>

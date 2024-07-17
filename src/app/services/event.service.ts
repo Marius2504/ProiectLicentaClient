@@ -9,17 +9,17 @@ import { GenericService } from './generic.service';
 })
 export class EventService extends GenericService<Event> {
 
-  constructor(http:HttpClient) { super(http,'https://localhost:7255/api/Event') }
+  constructor(http:HttpClient) { super(http,'Event') }
 
   getAllEventsOfArtist(id:number): Observable<Event[]> {
-    return this.http.get<Event[]>(this.url+ '/artist/' + id)
+    return this.http.get<Event[]>(this.defaultUrl + this.url+ '/artist/' + id)
   }
   AddArtist(eventId:number,artistId:number):Observable<Event>
   {
-    return this.http.post<Event>(this.url+ '/artist/add/' + eventId + '/' + artistId,{})
+    return this.http.post<Event>(this.defaultUrl +this.url+ '/artist/add/' + eventId + '/' + artistId,{})
   }
   RemoveArtist(eventId:number,artistId:number):Observable<Event>
   {
-    return this.http.post<Event>(this.url+ '/artist/remove/' + eventId + '/' + artistId,{})
+    return this.http.post<Event>(this.defaultUrl +this.url+ '/artist/remove/' + eventId + '/' + artistId,{})
   }
 }

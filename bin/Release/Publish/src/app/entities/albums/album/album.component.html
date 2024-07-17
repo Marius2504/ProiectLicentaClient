@@ -1,0 +1,10 @@
+<div class="mainDiv" (click)="navigateToDetails()">
+    <div class="image">
+        <img #image class="img" src="{{currentItem.imagePath}}" onerror="this.onerror=null; this.src='../../../../assets/song.png'" alt="" >
+    </div> 
+    <div class="info">
+        <p>{{currentItem.name}}</p>
+        <p class="subinfo"><a routerLink="artist/{{artist.id}}" style="color: white;"> {{artist.name}} </a>{{currentItem.year}}</p>
+    </div>
+</div>
+

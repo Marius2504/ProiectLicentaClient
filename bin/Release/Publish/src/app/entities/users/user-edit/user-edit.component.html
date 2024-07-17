@@ -1,0 +1,36 @@
+<body>
+    <form>
+        <h2 class="title">Edit profile</h2>
+        <div class="container1">
+            <img class="img" *ngIf="user.imagePath;else other_content" src="{{user.imagePath}}" alt=""
+                height="50px">
+            <ng-template #other_content>
+                <img class="img" src="../../../../assets/user.png" alt="aa">
+            </ng-template>
+        </div>
+        <div>
+            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+            <button type="button" class="btn btn-success" (click)="file.click()">Upload</button>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" class="form-control" required [(ngModel)]="user.name" name="nameUser"
+                placeholder="Enter name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter email" required [(ngModel)]="user.email" name="email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Phone number</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Phone number" required [(ngModel)]="user.phoneNumber" name="phoneNumber">
+        </div>
+        <div *ngIf="artist.id != 0" class="form-group">
+            <label for="exampleInputDesc">Description</label>
+            <input type="text" class="form-control" id="exampleInputDESC" placeholder="Description" required [(ngModel)]="artist.description" name="description">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="Update()">Update</button>
+    </form>
+</body>
