@@ -8,5 +8,5 @@ import { GenericService } from './generic.service';
 })
 export class ClientService extends GenericService<Client> {
 
-  constructor(http:HttpClient) { super(http, '/Client') }
+  constructor(http:HttpClient) { super(http, 'Client') }
 }

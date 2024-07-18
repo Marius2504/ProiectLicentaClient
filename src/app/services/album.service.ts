@@ -14,7 +14,7 @@ export class AlbumService extends GenericService<Album>   {
     }
     UploadImage(formData:FormData)
   {
-    return this.http.post(this.defaultUrl +'/Upload/Album', formData, {reportProgress: true, observe: 'events'})
+    return this.http.post(this.defaultUrl +'Upload/Album', formData, {reportProgress: true, observe: 'events'})
   }
     
 }
