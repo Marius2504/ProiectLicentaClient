@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'bin/Release/Publish/src/app/enviroments/enviroments';
 import { EMPTY } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Album } from 'src/app/models/Album.model';
@@ -19,7 +20,7 @@ import { SongService } from 'src/app/services/song.service';
   styleUrls: ['./song-create.component.scss']
 })
 export class SongCreateComponent implements OnInit {
-  defaultUrl: string = "http://dumitrescu.online/api/"
+  defaultUrl: string = environment.apiUrl
   song: Song = new Song()
   genres: Genre[] = [];
   albums: Album[] = [];

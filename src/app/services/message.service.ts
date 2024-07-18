@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GenericService } from './generic.service';
 import { Message } from '../models/Message.model';
+import { environment } from 'bin/Release/Publish/src/app/enviroments/enviroments';
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
-  defaultUrl: string = "http://dumitrescu.online/api/"
+  defaultUrl: string = environment.apiUrl
   constructor(private http:HttpClient){}
 
   AddMessage(entity: Message) {
@@ -23,7 +24,6 @@ export class MessageService {
   }
   DeleteMessage(id:number,songId:number)
   {
-    //https://localhost:7255/api/Song/removeMessage/3/8
     console.log(this.defaultUrl+ 'Song/removeMessage/' + songId + '/' + id)
     return this.http.delete<Message>(this.defaultUrl+ 'Song/removeMessage/' + songId + '/' + id)
   }

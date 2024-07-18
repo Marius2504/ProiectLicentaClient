@@ -10,7 +10,7 @@ import { GenericService } from './generic.service';
 })
 export class PlaylistService extends GenericService<Playlist> {
 
-  constructor(http:HttpClient) { super(http,'https://localhost:7255/api/Playlist') }
+  constructor(http:HttpClient) { super(http,'Playlist') }
 
   
 }

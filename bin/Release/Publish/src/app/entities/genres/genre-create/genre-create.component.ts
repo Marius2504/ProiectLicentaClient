@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/app/enviroments/enviroments';
 import { Genre } from 'src/app/models/Genre.model';
 import { GenreService } from 'src/app/services/genre.service';
 
@@ -15,10 +16,6 @@ export class GenreCreateComponent implements OnInit{
 
   constructor(private genreService:GenreService){}
   ngOnInit(): void {
-   // this.genre.id = 9;
-  //  this.genre.name = "Country"
-  //  this.genre.imagePath = "https://localhost:7255/Resources\\Images\\genre\\9.avif"
-   // this.UpdateGenre();
   }
   uploadFile = (files: any) => {
     if (files.length === 0) {
@@ -41,7 +38,7 @@ export class GenreCreateComponent implements OnInit{
             var response = {dbPath: ''};
             console.log(event.body)
             response = event.body
-            this.genre.imagePath ="https://localhost:7255/" + response.dbPath;
+            this.genre.imagePath =environment.apiUrl + response.dbPath;
             
             //Update genre
             this.UpdateGenre();

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'bin/Release/Publish/src/app/enviroments/enviroments';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export abstract class GenericService<T> {
   //override the url for every service
-  public defaultUrl: string = "http://dumitrescu.online/api/"
+  public defaultUrl: string = environment.apiUrl
   public url: string = ""
   constructor(protected http: HttpClient, protected urlPassed: string) { this.url = urlPassed }
 

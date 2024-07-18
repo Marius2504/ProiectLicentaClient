@@ -7,10 +7,11 @@ import { User } from '../models/User.model';
 import { UserService } from './user.service';
 import jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { environment } from '../enviroments/enviroments';
 
 @Injectable()
 export class AuthService implements OnInit {
-  url: string = "https://localhost:7255/api/User"
+  url: string = environment.apiUrl + "User"
   defaultUser: User = new User("", "", "", false, "", "")
   loggedInUser: User | undefined
   

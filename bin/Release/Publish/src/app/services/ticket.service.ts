@@ -8,5 +8,5 @@ import { GenericService } from './generic.service';
 })
 export class TicketService extends GenericService<Ticket> {
 
-  constructor(http:HttpClient) { super(http,'https://localhost:7255/api/Ticket') }
+  constructor(http:HttpClient) { super(http,'Ticket') }
 }

@@ -1,6 +1,7 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { environment } from 'src/app/enviroments/enviroments';
 import { Album } from 'src/app/models/Album.model';
 import { Artist } from 'src/app/models/Artist.model';
 import { Genre } from 'src/app/models/Genre.model';
@@ -112,7 +113,7 @@ export class SongEditComponent implements OnInit {
             if (event.type === HttpEventType.Response) {
               var response = { dbPath: '' };
               response = event.body
-              this.song.imagePath = "https://localhost:7255/" + response.dbPath;
+              this.song.imagePath = environment.apiUrl + response.dbPath;
               
               this.UploadSong();
             }
@@ -137,7 +138,7 @@ export class SongEditComponent implements OnInit {
               var response = { dbPath: '' };
               response = event.body
 
-              this.song.serverLink = "https://localhost:7255/" + response.dbPath;
+              this.song.serverLink = environment.apiUrl + response.dbPath;
               //Update song
               this.UpdateSong();
             }

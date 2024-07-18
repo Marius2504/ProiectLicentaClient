@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { catchError, EMPTY } from 'rxjs';
+import { environment } from 'src/app/enviroments/enviroments';
 import { Artist } from 'src/app/models/Artist.model';
 import { User } from 'src/app/models/User.model';
 import { ArtistService } from 'src/app/services/artist.service';
@@ -65,7 +66,7 @@ export class UserEditComponent implements OnInit {
               var response = { dbPath: '' };
               response = event.body
               console.log(response)
-              this.user.imagePath = "https://localhost:7255/" + response.dbPath;
+              this.user.imagePath = environment.apiUrl + response.dbPath;
 
               //Update artist
               this.UpdateArtist();

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Song } from '../models/Song.model';
 import { GenericService } from './generic.service';
+import { environment } from '../enviroments/enviroments';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class SongService extends GenericService<Song>{
   public subscribe$ = this.subscribeSource.asObservable();
 
   constructor(http:HttpClient) {
-     super(http,'https://localhost:7255/api/Song') 
+     super(http,'Song') 
      const songId = localStorage.getItem("currentSong");
       if(songId != null)
       {
@@ -106,12 +107,12 @@ export class SongService extends GenericService<Song>{
 
   UploadImage(formData:FormData)
   {
-    return this.http.post("https://localhost:7255/api" +'/Upload/Song', formData, {reportProgress: true, observe: 'events'})
+    return this.http.post(environment.apiUrl +'Upload/Song', formData, {reportProgress: true, observe: 'events'})
   }
   UploadSong(formData:FormData)
   {
     console.log("da")
-    return this.http.post("https://localhost:7255/api" +'/Upload/songFile', formData, {reportProgress: true, observe: 'events'})
+    return this.http.post(environment.apiUrl +'Upload/songFile', formData, {reportProgress: true, observe: 'events'})
   }
   
   

@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
     if (this.authService.isAuthenticated()) {
       return true;
     } else {
-      console.log("eu am fost")
       return this.router.parseUrl('/login');
     }
   }

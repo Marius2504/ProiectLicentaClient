@@ -3,18 +3,20 @@ import { HttpClient } from "@angular/common/http"
 import { Album } from "../models/Album.model";
 import { GenericService } from "./generic.service";
 import { Observable } from "rxjs";
+import { environment } from "../enviroments/enviroments";
 
 @Injectable({ providedIn: 'root'})
 export class AlbumService extends GenericService<Album>   {
-    constructor(http:HttpClient) { super(http,'https://localhost:7255/api/Album') }
+    constructor(http:HttpClient) { super(http,'Album') }
 
     getAllAlbumsOfArtist(id:number): Observable<Album[]> {
-        console.log(this.url+ '/artist/' + id)
         return this.http.get<Album[]>(this.url+ '/artist/' + id)
     }
     UploadImage(formData:FormData)
   {
-    return this.http.post("https://localhost:7255/api" +'/Upload/Album', formData, {reportProgress: true, observe: 'events'})
+    console.log(environment.apiUrl +'Upload/Album')
+    return this.http.post(environment.apiUrl +'Upload/Album', formData, {reportProgress: true, observe: 'events'})
+    
   }
     
 }

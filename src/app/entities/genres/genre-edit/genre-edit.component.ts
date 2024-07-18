@@ -1,6 +1,7 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { environment } from 'bin/Release/Publish/src/app/enviroments/enviroments';
 import { Genre } from 'src/app/models/Genre.model';
 import { GenreService } from 'src/app/services/genre.service';
 
@@ -10,7 +11,7 @@ import { GenreService } from 'src/app/services/genre.service';
   styleUrls: ['./genre-edit.component.scss']
 })
 export class GenreEditComponent {
-  defaultUrl: string = "http://dumitrescu.online/api/"
+  defaultUrl: string = environment.apiUrl
   genre:Genre = new Genre()
   id: number = 0;
   formData: FormData | undefined;

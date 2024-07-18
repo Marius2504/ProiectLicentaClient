@@ -41,7 +41,7 @@ import { LocationCreateComponent } from './entities/locations/location-create/lo
 import { TrendingComponent } from './entities/songs/trending/trending.component';
 import { MyplaylistsComponent } from './entities/playlists/myplaylists/myplaylists.component';
 import { NopageComponent } from './entities/nopage/nopage.component';
-
+import { environment } from './enviroments/enviroments';
 @NgModule({
   declarations: [
     AppComponent,

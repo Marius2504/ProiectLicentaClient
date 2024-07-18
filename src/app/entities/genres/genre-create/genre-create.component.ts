@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'bin/Release/Publish/src/app/enviroments/enviroments';
 import { Genre } from 'src/app/models/Genre.model';
 import { GenreService } from 'src/app/services/genre.service';
 
@@ -9,17 +10,13 @@ import { GenreService } from 'src/app/services/genre.service';
   styleUrls: ['./genre-create.component.scss']
 })
 export class GenreCreateComponent implements OnInit{
-  defaultUrl: string = "http://dumitrescu.online/api/"
+  defaultUrl: string = environment.apiUrl
   genre:Genre = new Genre()
   name:string = ""
   formData:FormData = new FormData()
 
   constructor(private genreService:GenreService){}
   ngOnInit(): void {
-   // this.genre.id = 9;
-  //  this.genre.name = "Country"
-  //  this.genre.imagePath = "https://localhost:7255/Resources\\Images\\genre\\9.avif"
-   // this.UpdateGenre();
   }
   uploadFile = (files: any) => {
     if (files.length === 0) {

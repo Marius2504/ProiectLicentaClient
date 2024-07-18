@@ -7,7 +7,7 @@ import { Song } from 'src/app/models/Song.model';
 import { AlbumService } from 'src/app/services/album.service';
 import { ArtistService } from 'src/app/services/artist.service';
 import { SongService } from 'src/app/services/song.service';
-
+import { environment } from 'src/app/enviroments/enviroments';
 @Component({
   selector: 'app-album-edit',
   templateUrl: './album-edit.component.html',
@@ -88,7 +88,7 @@ export class AlbumEditComponent implements OnInit {
             if (event.type === HttpEventType.Response) {
               var response = { dbPath: '' };
               response = event.body
-              this.album.imagePath = "https://localhost:7255/" + response.dbPath;
+              this.album.imagePath = environment.apiUrl + response.dbPath;
 
               this.UpdateAlbum();
             }

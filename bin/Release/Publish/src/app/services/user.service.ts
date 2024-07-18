@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Song } from '../models/Song.model';
 import { User } from '../models/User.model';
 import { GenericService } from './generic.service';
+import { environment } from '../enviroments/enviroments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService extends GenericService<User> {
 
-  constructor(http:HttpClient) { super(http,'https://localhost:7255/api/User') }
+  constructor(http:HttpClient) { super(http,'User') }
 
   GetByEmail(email:string){
     return this.http.get<User>(this.url + '/email/' + email)
@@ -22,7 +23,7 @@ export class UserService extends GenericService<User> {
   }
   UploadImage(formData:FormData,userId:string)
   {
-    return this.http.post("https://localhost:7255/api" +'/Upload/Profile', formData, {reportProgress: true, observe: 'events'})
+    return this.http.post(environment.apiUrl +'Upload/Profile', formData, {reportProgress: true, observe: 'events'})
   }
   
   addLike(song:Song,userId:string)

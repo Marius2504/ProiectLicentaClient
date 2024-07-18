@@ -1,6 +1,7 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { environment } from 'src/app/enviroments/enviroments';
 import { Genre } from 'src/app/models/Genre.model';
 import { GenreService } from 'src/app/services/genre.service';
 
@@ -52,7 +53,7 @@ export class GenreEditComponent {
             if (event.type === HttpEventType.Response) {
               var response = { dbPath: '' };
               response = event.body
-              this.genre.imagePath = "https://localhost:7255/" + response.dbPath;
+              this.genre.imagePath = environment.apiUrl + response.dbPath;
               
               this.UpdateGenre();
             }

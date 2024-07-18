@@ -1,6 +1,7 @@
 import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { environment } from 'bin/Release/Publish/src/app/enviroments/enviroments';
 import { Album } from 'src/app/models/Album.model';
 import { Artist } from 'src/app/models/Artist.model';
 import { Song } from 'src/app/models/Song.model';
@@ -14,7 +15,7 @@ import { SongService } from 'src/app/services/song.service';
   styleUrls: ['./album-edit.component.scss']
 })
 export class AlbumEditComponent implements OnInit {
-  defaultUrl: string = "http://dumitrescu.online/api/"
+  defaultUrl: string = environment.apiUrl
   album: Album = new Album()
   songs: Song[] = []
   id: number = 0;

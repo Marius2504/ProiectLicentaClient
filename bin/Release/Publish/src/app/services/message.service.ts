@@ -2,30 +2,30 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GenericService } from './generic.service';
 import { Message } from '../models/Message.model';
+import { environment } from '../enviroments/enviroments';
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
-  url: string = "https://localhost:7255/api"
+  url: string = environment.apiUrl
   constructor(private http:HttpClient){}
 
   AddMessage(entity: Message) {
     
-    return this.http.post<Message>(this.url + '/Song/addMessage', entity)
+    return this.http.post<Message>(this.url + 'Song/addMessage', entity)
   }
   AddLike(userId:string,messageId:number)
   {
-    return this.http.post<Message>(this.url + '/User/message/addLike/'+userId + '/' +messageId, {})
+    return this.http.post<Message>(this.url + 'User/message/addLike/'+userId + '/' +messageId, {})
   }
   RemoveLike(userId:string,messageId:number)
   {
-    return this.http.post<Message>(this.url + '/User/message/removeLike/'+userId + '/' +messageId, {})
+    return this.http.post<Message>(this.url + 'User/message/removeLike/'+userId + '/' +messageId, {})
   }
   DeleteMessage(id:number,songId:number)
   {
-    //https://localhost:7255/api/Song/removeMessage/3/8
-    console.log(this.url+ '/Song/removeMessage/' + songId + '/' + id)
-    return this.http.delete<Message>(this.url+ '/Song/removeMessage/' + songId + '/' + id)
+    console.log(this.url+ 'Song/removeMessage/' + songId + '/' + id)
+    return this.http.delete<Message>(this.url+ 'Song/removeMessage/' + songId + '/' + id)
   }
 
   

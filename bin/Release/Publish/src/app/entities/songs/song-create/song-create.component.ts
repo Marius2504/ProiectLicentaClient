@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { EMPTY } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/app/enviroments/enviroments';
 import { Album } from 'src/app/models/Album.model';
 import { Artist } from 'src/app/models/Artist.model';
 import { Genre } from 'src/app/models/Genre.model';
@@ -163,7 +164,7 @@ export class SongCreateComponent implements OnInit {
           if (event.type === HttpEventType.Response) {
             var response = { dbPath: '' };
             response = event.body
-            this.song.imagePath = "https://localhost:7255/" + response.dbPath;
+            this.song.imagePath = environment.apiUrl + response.dbPath;
 
             //Update song
             this.songService.Update(this.song).subscribe(Response => {
@@ -188,7 +189,7 @@ export class SongCreateComponent implements OnInit {
           if (event.type === HttpEventType.Response) {
             var response = { dbPath: '' };
             response = event.body
-            this.album.imagePath = "https://localhost:7255/" + response.dbPath;
+            this.album.imagePath = environment.apiUrl + response.dbPath;
 
             //Update album
             this.albumService.Update(this.album).subscribe(Response => {
@@ -211,7 +212,7 @@ export class SongCreateComponent implements OnInit {
             if (event.type === HttpEventType.Response) {
               var response = {dbPath: ''};
               response = event.body
-              this.song.serverLink ="https://localhost:7255/" + response.dbPath;
+              this.song.serverLink =environment.apiUrl + response.dbPath;
               
               //Update genre
               this.songService.Update(this.song).subscribe(Response => {

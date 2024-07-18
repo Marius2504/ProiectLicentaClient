@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { environment } from 'bin/Release/Publish/src/app/enviroments/enviroments';
 import { catchError, EMPTY } from 'rxjs';
 import { Artist } from 'src/app/models/Artist.model';
 import { User } from 'src/app/models/User.model';
@@ -14,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent implements OnInit {
-  defaultUrl: string = "http://dumitrescu.online/api/"
+  defaultUrl: string = environment.apiUrl
   user: User = new User();
   artist = new Artist()
   id: string = "";

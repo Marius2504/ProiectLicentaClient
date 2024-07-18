@@ -7,7 +7,7 @@ import { User } from 'src/app/models/User.model';
 import { AlbumService } from 'src/app/services/album.service';
 import { ArtistService } from 'src/app/services/artist.service';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { environment } from 'src/app/enviroments/enviroments';
 @Component({
   selector: 'app-album-create',
   templateUrl: './album-create.component.html',
@@ -75,7 +75,7 @@ export class AlbumCreateComponent implements OnInit {
           if (event.type === HttpEventType.Response) {
             var response = { dbPath: '' };
             response = event.body
-            this.album.imagePath = "https://localhost:7255/" + response.dbPath;
+            this.album.imagePath = environment.apiUrl + response.dbPath;
 
             //Update album
             this.albumService.Update(this.album).subscribe(Response => {

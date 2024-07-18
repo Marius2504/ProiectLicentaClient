@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'bin/Release/Publish/src/app/enviroments/enviroments';
 import { catchError, EMPTY } from 'rxjs';
 import { Album } from 'src/app/models/Album.model';
 import { Artist } from 'src/app/models/Artist.model';
@@ -14,7 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./album-create.component.scss']
 })
 export class AlbumCreateComponent implements OnInit {
-  defaultUrl: string = "http://dumitrescu.online/api/"
+  defaultUrl: string = environment.apiUrl
   album: Album = new Album()
   formAlbumImage: FormData | undefined
   user: User = new User();
