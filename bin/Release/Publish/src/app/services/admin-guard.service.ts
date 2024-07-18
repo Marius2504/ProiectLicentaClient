@@ -15,6 +15,7 @@ export class AdminGuard implements CanActivate {
     
     if (this.authService.isAdmin()) {
       console.log("da")
+      console.log("Dadas")
       return true;
     } else {
       console.log("admin aici")
